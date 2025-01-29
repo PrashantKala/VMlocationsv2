@@ -1,0 +1,27 @@
+
+[
+    {
+        "id": 1001,
+        "vehicleName": "BMW",
+        "vendor": "Apple-1",
+        "date": "2015-02-09",
+        "Reviewer": "John Kon",
+        "Review": "Pre Initial"
+    },
+    {
+        "id": 1002,
+        "vehicleName": "Audi",
+        "vendor": "Apple-2",
+        "date": "2015-02-09",
+        "Reviewer": "John Don",
+        "Review": "Initial"
+    },
+    {
+        "id": 1003,
+        "vehicleName": "Suzuki",
+        "vendor": "Apple-2",
+        "date": "2015-02-09",
+        "Reviewer": "John Doe",
+        "Review": "Post Initial"
+    }
+]
