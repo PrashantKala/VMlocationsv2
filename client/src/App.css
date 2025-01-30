@@ -1,3 +1,8 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
 /* Navbar Container */
 .navbar {
   display: flex;
@@ -5,7 +10,7 @@
   align-items: center;
   /* background-color: #1a202c;  */
   color: black;
-  padding: 1rem 2rem; /* Adjust padding for spacing */
+  padding: 1rem 2rem; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
 }
 
@@ -373,7 +378,7 @@ table td a:hover {
 /* Asset Categories */
 .category-title {
   margin: 0 0 10px 10px;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -402,11 +407,17 @@ table td a:hover {
   position: relative;
 }
 
+.asset-card{
+  display: inline-flex;
+  /* border: 2px solid green; */
+}
+
 .asset-card img.asset-icon {
-  border-radius:15px;
+  display: flex;
   width: 100%;
-  height: 80px;
+  height: 60px;
   object-fit: contain;
+  border-radius: 5px;
 }
 
 /* .asset-card:hover {
@@ -416,18 +427,17 @@ table td a:hover {
 
 .asset-name {
   margin-top: 15px;
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .status-dot, .info-button, .plus-button {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   position: absolute;
 }
 .status-dot {
-  width: 20px; /* Adjust size for better visibility */
-  height: 20px;
   top: -5px;
   left: -5px;
   cursor: pointer;
@@ -442,8 +452,6 @@ table td a:hover {
 
 /* Info Button */
 .info-button {
-  width: 20px; /* Adjust size for better visibility */
-  height: 20px;
   border-radius: 50%;
   background-color: #fff;
   /* color: white; */
@@ -469,13 +477,11 @@ table td a:hover {
 /* Plus Button */
 .plus-button {
   background-color: white;
-  width: 20px; /* Match size of info button */
-  height: 20px;
   border-radius: 50%;
   /* background-color: #28a745; Light green background */
   color: white;
-  font-size: 18px;
-  font-weight: bold;
+  /* font-size: 10px; */
+  /* font-weight: bold; */
   text-align: center;
   display: flex;
   align-items: center;
@@ -486,6 +492,12 @@ table td a:hover {
   right: -5px;
   position: absolute;
   transition: all 0.3s ease;
+}
+
+.plus-button img{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }
 
 .plus-button:hover {
@@ -684,16 +696,17 @@ table td a:hover {
 
 .drawer {
   position: fixed;
-  top: 0;
+  top: 32%;
   right: -400px;
   width: 300px;
-  height: 100%;
+  border-radius: 20px;
+  /* height: 50%; */
   background: white;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
   transition: right 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 0px 20px 0px 20px;
   overflow-y: auto;
   z-index: 10000;
 }
@@ -706,18 +719,24 @@ table td a:hover {
   align-self: flex-end;
   border: none;
   background: none;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
+  position: absolute;
 }
 
 .drawer-content {
   text-align: center;
 }
+.drawer-content h2{
+  margin: 0px;
+  padding: 5px;
+  font-size: larger;
+}
 
 .drawer-asset-icon {
-  width: 100px;
-  height: 100px;
-  margin: 10px auto;
+  width: 50px;
+  height: 50px;
+  /* margin: 10px auto; */
 }
 
 @media (max-width: 768px) {

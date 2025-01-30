@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import asset from "../assets.json";
 
-const Navbar = ({ onSelectAsset }) => {
+const Navbar = ({ onSelectAsset, openDrawer }) => {
   const [activeTab, setActiveTab] = useState(null);
   const [hoveredAsset, setHoveredAsset] = useState(null);
-  const [selectedAsset, setSelectedAsset] = useState(null);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const tabs = ["In-Cloud", "On-Prem"];
   const assets = asset;
@@ -15,16 +13,11 @@ const Navbar = ({ onSelectAsset }) => {
     window.location.reload();
   };
 
-  const openDrawer = (asset) => {
-    setSelectedAsset(asset);
-    setIsDrawerOpen(true);
+  const selectAsset = (asset) => {
+    openDrawer();
     onSelectAsset(asset);
   };
 
-  const closeDrawer = () => {
-    setIsDrawerOpen(false);
-    setSelectedAsset(null);
-  };
 
   return (
     <div className="navbar">
@@ -73,7 +66,7 @@ const Navbar = ({ onSelectAsset }) => {
                           </div>
                         )}
                         <img src={asset.icon} alt={asset.name} className="asset-icon" />
-                        <button className="plus-button" onClick={() => openDrawer(asset)}>➕</button>
+                        <button className="plus-button" onClick={() => selectAsset(asset)}> <img src="/images/gps.png"/> </button>
                       </div>
                       <div className="asset-name">{asset.name}</div>
                     </div>
@@ -88,7 +81,7 @@ const Navbar = ({ onSelectAsset }) => {
       <button className="logout-button" onClick={handleLogout}>Log Out</button>
 
       {/* Drawer */}
-      <div className={`drawer ${isDrawerOpen ? "open" : ""}`}>
+      {/* <div className={`drawer ${isDrawerOpen ? "open" : ""}`}>
         <button className="drawer-close" onClick={closeDrawer}>✖</button>
         {selectedAsset && (
           <div className="drawer-content">
@@ -106,7 +99,7 @@ const Navbar = ({ onSelectAsset }) => {
             </table>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

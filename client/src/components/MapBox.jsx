@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import assets from '../assets.json';
 import CustomCard from './CustomCard';
 import { createRoot } from 'react-dom/client';
-function MapBox({ selectedAsset }) {
+function MapBox({ selectedAsset, openDrawer }) {
   const mapRef = useRef(null);
   const markersRef = useRef({});
+
 
   useEffect(() => {
     if (!mapRef.current) {
@@ -28,7 +29,7 @@ function MapBox({ selectedAsset }) {
               popupContent.style.overflow = 'visible'; // Allow content to expand
               popupContent.innerHTML = `<div id="popup-${item.name.replace(/\s+/g, '-')}" ></div>`;
 
-              const marker = L.marker([item.latitude-.15, item.longitude], {
+              const marker = L.marker([item.latitude, item.longitude], {
                 icon: L.icon({
                   iconUrl: item.icon,
                   iconSize: [25, 25],
@@ -37,6 +38,10 @@ function MapBox({ selectedAsset }) {
 
               marker.bindPopup(popupContent);
               markersRef.current[item.name] = marker;
+
+              marker.on("click", () => {
+                openDrawer();
+              });
 
               marker.on('popupopen', () => {
                 const rootElement = document.getElementById(`popup-${item.name.replace(/\s+/g, '-')}`);
@@ -73,11 +78,11 @@ function MapBox({ selectedAsset }) {
     if (selectedAsset && mapRef.current) {
       const marker = markersRef.current[selectedAsset.name];
       if (marker) {
-        mapRef.current.flyTo([39.8283, -98.5795], 4, { animate: true, duration: 3 }); // Slow zoom out first
+        mapRef.current.flyTo([39.8283, -98.5795], 4, { animate: true, duration: 3 }); 
         mapRef.current.flyTo([selectedAsset.latitude, selectedAsset.longitude], 10, { animate: true, duration: 3 });
         setTimeout(() => {
           marker.openPopup();
-          mapRef.current.panBy([0, -100]); // Adjust to ensure popup is fully visible
+          mapRef.current.panBy([0, -210]); // Adjust to ensure popup is fully visible
         }, 3000);
       }
     }

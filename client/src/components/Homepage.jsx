@@ -23,6 +23,7 @@ const checkAndClearExpiredData = () => {
 
 const Homepage = () => {
     const [selectedAsset, setSelectedAsset] = useState(null);
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -32,11 +33,41 @@ const Homepage = () => {
             navigate('/login');
         }
     }, []);
+
+    const openDrawer = (asset) => {
+        // setSelectedAsset(asset);
+        setIsDrawerOpen(true);
+        // onSelectAsset(asset);
+      };
+      const closeDrawer = () => {
+        setIsDrawerOpen(false);
+        // setSelectedAsset(null);
+      };
   return (
    <>
         {/* <Navbar/> */}
-        <Navbar onSelectAsset={setSelectedAsset} />
-        <MapBox selectedAsset={selectedAsset} />
+        <Navbar selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer}  />
+        <MapBox selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
+        <div className={`drawer ${isDrawerOpen ? "open" : ""}`}>
+        <button className="drawer-close" onClick={closeDrawer}>✖</button>
+        {selectedAsset && (
+          <div className="drawer-content">
+            <h2>{selectedAsset.name}</h2>
+            <img src={selectedAsset.icon} alt={selectedAsset.name} className="drawer-asset-icon" />
+            <table>
+              <tbody>
+                {Object.entries(selectedAsset.properties).map(([key, value]) => (
+                  <tr key={key}>
+                    <th>{key}</th>
+                    <td>{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
    </>
   )
 }
