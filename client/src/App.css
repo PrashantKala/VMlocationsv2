@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0px;
   padding: 0px;
 }
@@ -10,8 +10,9 @@
   align-items: center;
   /* background-color: #1a202c;  */
   color: black;
-  padding: 1rem 2rem; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Add subtle shadow */
 }
 
 /* Logo Section */
@@ -21,24 +22,30 @@
 }
 
 .logo-img {
-  height: 40px; /* Adjust logo size */
+  height: 40px;
+  /* Adjust logo size */
   width: auto;
 }
 
 .company-name {
   margin-left: 10px;
-  font-size: 1.25rem; /* Medium font size */
+  font-size: 1.25rem;
+  /* Medium font size */
   font-weight: bold;
-  text-transform: uppercase; /* Optional: Makes text uppercase */
+  text-transform: uppercase;
+  /* Optional: Makes text uppercase */
 }
 
 /* Logout Button */
 .logout-button {
-  background-color: #e53e3e; /* Red */
+  background-color: #e53e3e;
+  /* Red */
   color: white;
-  padding: 0.5rem 1rem; /* Add padding for button */
+  padding: 0.5rem 1rem;
+  /* Add padding for button */
   border: none;
-  border-radius: 8px; /* Rounded corners */
+  border-radius: 8px;
+  /* Rounded corners */
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
@@ -46,26 +53,31 @@
 }
 
 .logout-button:hover {
-  background-color: #c53030; /* Darker red on hover */
+  background-color: #c53030;
+  /* Darker red on hover */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
     /* flex-direction: column; Stack items vertically */
-    padding: 1rem; /* Reduce padding */
+    padding: 1rem;
+    /* Reduce padding */
   }
 
   .navbar-logo {
-    margin-bottom: 1rem; /* Add space below the logo section */
+    margin-bottom: 1rem;
+    /* Add space below the logo section */
   }
 
   .company-name {
-    font-size: 1rem; /* Slightly smaller font size */
+    font-size: 1rem;
+    /* Slightly smaller font size */
   }
 
   .logout-button {
-    padding: 0.5rem 2rem; /* Adjust button size */
+    padding: 0.5rem 2rem;
+    /* Adjust button size */
   }
 }
 
@@ -146,9 +158,11 @@
   /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   font-family: Arial, sans-serif;
   overflow: hidden;
+  border: 2px solid yellow;
 }
 
 .header {
+  border: 2px solid green;
   display: flex;
   align-items: center;
   font-size: 1.2em;
@@ -158,13 +172,13 @@
   flex-direction: column;
 }
 
-.header img{
+.header img {
   padding: 0px;
   width: 50px;
   height: 50px;
 }
 
-.header h2{
+.header h2 {
   padding: 0px;
   margin: 0px;
 }
@@ -187,6 +201,7 @@
 }
 
 table {
+  border: 2px solid green;
   width: 100%;
   border-collapse: collapse;
   font-size: 0.85em;
@@ -219,20 +234,18 @@ table td a:hover {
 
 @media (max-width: 768px) {
   .card {
-    max-width: 100%; /* Take up more space on smaller screens */
+    max-width: 100%;
+    /* Take up more space on smaller screens */
     font-size: 0.9em;
   }
 
   .leaflet-popup-content {
-    width: 50% !important; /* Use most of the screen width */
+    width: 50% !important;
+    /* Use most of the screen width */
     max-width: 50% !important;
   }
 
-  table th,
-  table td {
-    font-size: 0.8em;
-    padding: 6px;
-  }
+
 }
 
 
@@ -330,8 +343,8 @@ table td a:hover {
 .asset-container {
   position: absolute;
   top: 45px;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 0px;
+
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -343,19 +356,19 @@ table td a:hover {
   justify-content: center;
   gap: 2rem;
   overflow: visible;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .asset-category {
-  border-radius: 12px; 
+  border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 10px;
   overflow: visible;
   position: relative;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: center;
-   /* width: 40%; */
-   flex: 1;
+  /* width: 40%; */
+  flex: 1;
 }
 
 /* Close Button */
@@ -385,10 +398,11 @@ table td a:hover {
 /* Asset Items */
 .asset-items {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 5rem;
+  /* border: 2px solid yellow; */
 }
 
 
@@ -405,9 +419,10 @@ table td a:hover {
   justify-content: center;
   text-align: center;
   position: relative;
+    /* border: 2px solid yellow; */
 }
 
-.asset-card{
+.asset-card {
   display: inline-flex;
   /* border: 2px solid green; */
 }
@@ -431,12 +446,15 @@ table td a:hover {
   font-weight: bold;
 }
 
-.status-dot, .info-button, .plus-button {
+.status-dot,
+.info-button,
+.plus-button {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   position: absolute;
 }
+
 .status-dot {
   top: -5px;
   left: -5px;
@@ -447,7 +465,8 @@ table td a:hover {
 
 .status-dot:hover {
   /* background-color: #0056b3; Darker blue on hover */
-  transform: scale(1.2); /* Slightly larger */
+  transform: scale(1.2);
+  /* Slightly larger */
 }
 
 /* Info Button */
@@ -462,16 +481,17 @@ table td a:hover {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Subtle shadow */
   top: -5px;
   right: -5px;
-  position: absolute;
   transition: all 0.3s ease;
 }
 
 .info-button:hover {
   /* background-color: #0056b3; Darker blue on hover */
-  transform: scale(1.2); /* Slightly larger */
+  transform: scale(1.2);
+  /* Slightly larger */
 }
 
 /* Plus Button */
@@ -487,14 +507,15 @@ table td a:hover {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  bottom: -5px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Subtle shadow */
+  bottom: -5px;
   right: -5px;
   position: absolute;
   transition: all 0.3s ease;
 }
 
-.plus-button img{
+.plus-button img {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -502,28 +523,154 @@ table td a:hover {
 
 .plus-button:hover {
   /* background-color: #1e7e34; Darker green on hover */
-  transform: scale(1.5); /* Slightly larger */
+  transform: scale(1.5);
+  /* Slightly larger */
+}
+
+.status-dot.black {
+  background-color: black;
+}
+
+.status-dot.grey {
+  background-color: grey;
+}
+
+.status-dot.yellow {
+  background-color: yellow;
 }
 
 .status-dot.green {
   background-color: green;
 }
 
-.status-dot.gray {
-  background-color: gray;
+.status-dot.red {
+  background-color: red;
+}
+
+.category-container {
+  display: flex;
+  flex: 1;
+  position: relative;
+  width:100%;
+  /* border: 2px solid yellow; */
 }
 
 /* Responsive Design */
+/* Existing CSS remains the same until the media queries */
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .navbar {
-    /* flex-direction: column; */
-    align-items: center;
+  .asset-container {
+    width: 85vw;
+    /* Adjust width for smaller screens */
+    left: -50%;
+    transform: none;
+    /* Remove transform */
+    top: 60px;
+    /* Adjust top position */
+    gap: 1rem;
+    /* Reduce gap between categories */
+    padding: 10px;
+    /* Add padding for better spacing */
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
+    white-space: nowrap;
+    /* Prevent wrapping of child elements */
   }
 
+
+
+  .asset-category {
+    left: 0px;
+    position: relative;
+    display: inline-block;
+    /* Display categories inline */
+    width: auto;
+    /* Allow categories to take up as much space as needed */
+    /* flex: none; Disable flex growth */
+    margin-right: 1rem;
+    /* Add margin between categories */
+  }
+
+  .asset-items {
+    display: inline-flex;
+    /* Display items inline */
+    gap: 1rem;
+    /* Reduce gap between items */
+  }
+
+  .asset-card {
+    width: 120px;
+    /* Fixed width for cards */
+  }
+
+  .asset-name {
+    font-size: 10px;
+    /* Reduce font size for asset names */
+  }
+
+  .category-title {
+    font-size: 13px;
+    /* Reduce font size for category titles */
+  }
+
+  .close-button {
+    top: 10px;
+    /* Adjust close button position */
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
   .asset-container {
-    width: 90%;
-    left: 5%;
-    transform: none;
+    width: 87vw;
+    /* Full width for very small screens */
+    left: -80%;
+    /* Align to the left */
+    top: 50px;
+    /* Adjust top position */
+    padding: 5px;
+    /* Reduce padding */
+  }
+
+  .asset-card {
+    width: 100px;
+    /* Further reduce card width */
+  }
+
+  .asset-items {
+    gap: 0.5rem;
+    /* Further reduce gap between items */
+  }
+
+  .asset-name {
+    font-size: 9px;
+    /* Further reduce font size for asset names */
+  }
+
+  .category-title {
+    font-size: 12px;
+    /* Further reduce font size for category titles */
+  }
+
+  .close-button {
+    top: 5px;
+    /* Adjust close button position */
+    right: 5px;
+    font-size: 16px;
+    /* Reduce close button size */
+  }
+
+  .tabs {
+    gap: 0.5rem;
+    /* Reduce gap between tabs */
+  }
+
+  .tab {
+    padding: 5px 10px;
+    /* Adjust tab padding */
+    font-size: 12px;
+    /* Reduce tab font size */
   }
 }
 
@@ -557,19 +704,16 @@ table td a:hover {
   font-size: 12px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
-  .navbar {
-    flex-wrap: wrap;
-  }
-
-  .asset-container {
-    width: 90%;
-    top: 30px;
-    left: 5%;
-    transform: none;
+  .tooltip-card{
+    top: 100px;
+    left: 0px;
   }
 }
+@media (max-width: 480px) {
+  
+}
+
 
 
 
@@ -578,9 +722,12 @@ table td a:hover {
   display: flex;
   height: 87vh;
   position: relative;
-  background-color: #f9f9f9; /* Light background for contrast */
-  font-family: 'Arial', sans-serif; /* Clean, modern font */
-  color: #333; /* Dark text for readability */
+  background-color: #f9f9f9;
+  /* Light background for contrast */
+  font-family: 'Arial', sans-serif;
+  /* Clean, modern font */
+  color: #333;
+  /* Dark text for readability */
 }
 
 /* Map Container Styling */
@@ -589,104 +736,155 @@ table td a:hover {
   position: relative;
   /* width: 90%; */
   /* height: 100%;  */
-  border-radius: 12px; /* Rounded corners for the map */
-  overflow: hidden; /* Prevent content overflow */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  margin: 16px; /* Add some spacing around the map */
-}
-
-/* Map ID Styling */
-#map {
-  /* width: 100%; */
-  /* height: 100%; Full height of container */
-  border-radius: 12px; /* Match parent container */
+  border-radius: 12px;
+  /* Rounded corners for the map */
+  overflow: hidden;
+  /* Prevent content overflow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  margin: 16px;
+  /* Add some spacing around the map */
+  border-radius: 12px;
 }
 
 /* Add interactive hover effect for the map on smaller devices */
 #map:hover {
-  transform: scale(1.01); /* Slight zoom on hover */
+  transform: scale(1.01);
+  /* Slight zoom on hover */
   transition: transform 0.3s ease-in-out;
 }
 
 .leaflet-popup-content {
-  width: auto !important; /* Dynamically resize based on content */
-  max-width: 400px !important; /* Set a reasonable max-width */
-  overflow: visible !important; /* Ensure no content is clipped */
+  width: auto !important;
+  /* Dynamically resize based on content */
+  max-width: 400px !important;
+  /* Set a reasonable max-width */
+  overflow: visible !important;
+  /* Ensure no content is clipped */
 }
 
 .leaflet-popup-content-wrapper {
-  overflow: visible !important; /* Prevent clipping inside the wrapper */
+  overflow: visible !important;
+  /* Prevent clipping inside the wrapper */
 }
 
 .leaflet-popup-content div {
-  overflow: visible; /* Prevent clipping for child elements */
+  overflow: visible;
+  /* Prevent clipping for child elements */
 }
+
+.popup-container{
+  width: 400px;
+}
+
 
 /* Responsive styles for smaller screens */
 @media (max-width: 768px) {
   .app-container {
-    height: 60vh; 
-    margin: 8px; 
+    height: 80vh;
+    margin: 8px;
   }
+
   .leaflet-popup-content {
-    width: 90% !important; /* Use most of the screen width */
+    width: 90% !important;
+    /* Use most of the screen width */
     max-width: 90% !important;
+  }
+
+  table th,
+  table td {
+    font-size: .6rem;
+    padding: 6px;
+  }
+
+  .header img {
+    padding: 0px;
+    width: 25px;
+    height: 25px;
+  }
+  .popup-container{
+    width: 350px;
   }
 }
 
 @media (max-width: 480px) {
   .app-container {
-    height: 50vh; /* Further reduce height for very small screens */
+    height: 80vh;
+    /* Further reduce height for very small screens */
     margin: 4px;
   }
+
   .card {
-    width: 90%; /* Set width to 90% of the screen */
-    max-width: 400px; /* Limit the maximum width */
-    margin: 0 auto; /* Center the card horizontally */
-    font-size: 0.85em; /* Adjust font size for readability */
-    padding: 10px; /* Add some padding for spacing */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for smaller screens */
+    width: 90%;
+    /* Set width to 90% of the screen */
+    max-width: 400px;
+    /* Limit the maximum width */
+    margin: 0 auto;
+    /* Center the card horizontally */
+    font-size: 0.85em;
+    /* Adjust font size for readability */
+    padding: 10px;
+    /* Add some padding for spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for smaller screens */
   }
 
   .header {
-    font-size: 1em; /* Adjust font size */
-    padding: 8px; /* Compact padding */
-    text-align: center; /* Center-align the header */
+    font-size: 1em;
+    /* Adjust font size */
+    padding: 8px;
+    /* Compact padding */
+    text-align: center;
+    /* Center-align the header */
   }
 
   .logo img {
-    height: 20px; /* Scale down the logo */
-    margin-right: 6px; /* Reduce spacing */
+    height: 20px;
+    /* Scale down the logo */
+    margin-right: 6px;
+    /* Reduce spacing */
   }
 
   .status {
-    font-size: 0.8em; /* Smaller font size */
-    padding: 6px; /* Adjust padding */
-    text-align: center; /* Center-align the status */
+    font-size: 0.8em;
+    /* Smaller font size */
+    padding: 6px;
+    /* Adjust padding */
+    text-align: center;
+    /* Center-align the status */
   }
 
   table {
-    font-size: 0.75em; /* Reduce font size for the table */
+    font-size: .6rem;
+    /* Reduce font size for the table */
   }
 
   table th,
   table td {
-    padding: 4px; /* Reduce padding */
+    padding: 4px;
+    /* Reduce padding */
   }
 
   table thead {
-    font-size: 0.8em; /* Slightly smaller header font */
+    font-size: 0.6em;
+    /* Slightly smaller header font */
   }
-  
+  .popup-container{
+    width: 340px;
+  }
+
 }
 
 /* Responsive styles for landscape orientation */
 @media (orientation: landscape) and (max-height: 500px) {
   .app-container {
-    height: auto; /* Allow height to adjust for landscape mode */
+    height: auto;
+    /* Allow height to adjust for landscape mode */
   }
+
   .map-container {
-    height: 70vh; /* Increase height in landscape */
+    height: 70vh;
+    /* Increase height in landscape */
   }
 }
 
@@ -727,7 +925,8 @@ table td a:hover {
 .drawer-content {
   text-align: center;
 }
-.drawer-content h2{
+
+.drawer-content h2 {
   margin: 0px;
   padding: 5px;
   font-size: larger;
@@ -743,4 +942,13 @@ table td a:hover {
   .drawer {
     width: 250px;
   }
+}
+@media (max-width: 480px) {
+  /* .drawer {
+    top: 10%;
+    bottom: -400px;
+    width: 400px;
+    border-radius: 20px;
+  } */
+   
 }

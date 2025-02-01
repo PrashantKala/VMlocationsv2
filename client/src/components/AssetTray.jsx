@@ -18,6 +18,14 @@ const Navbar = ({ onSelectAsset, openDrawer }) => {
     onSelectAsset(asset);
   };
 
+  const statusColors = {
+    poweringon: "black",
+    poweredoff: "grey",
+    unmanaged: "yellow",
+    ready: "green",
+    error: "red",
+  };
+
 
   return (
     <div className="navbar">
@@ -41,6 +49,7 @@ const Navbar = ({ onSelectAsset, openDrawer }) => {
         {activeTab && (
           <div className="asset-container">
             <button className="close-button" onClick={() => setActiveTab(null)}>✖</button>
+            <div className="category-container">
             {assets[activeTab].map(({ category, items }) => (
               <div key={category} className="asset-category">
                 <h3 className="category-title">{category}</h3>
@@ -48,7 +57,8 @@ const Navbar = ({ onSelectAsset, openDrawer }) => {
                   {items.map((asset) => (
                     <div className="asset-items-holder" key={asset.name}>
                       <div className={`asset-card ${asset.status}`}>
-                        <div className={`status-dot ${asset.status === "active" ? "green" : "gray"}`}></div>
+                      <div className={`status-dot ${statusColors[asset.status]}`}></div>
+                      {console.log(asset.status)}
                         <div className="info-button" onMouseEnter={() => setHoveredAsset(asset)} onMouseLeave={() => setHoveredAsset(null)}>ℹ</div>
                         {hoveredAsset === asset && (
                           <div className="tooltip-card" onMouseEnter={() => setHoveredAsset(asset)} onMouseLeave={() => setHoveredAsset(null)}>
@@ -74,32 +84,13 @@ const Navbar = ({ onSelectAsset, openDrawer }) => {
                 </div>
               </div>
             ))}
+            </div>
           </div>
         )}
       </div>
 
       <button className="logout-button" onClick={handleLogout}>Log Out</button>
 
-      {/* Drawer */}
-      {/* <div className={`drawer ${isDrawerOpen ? "open" : ""}`}>
-        <button className="drawer-close" onClick={closeDrawer}>✖</button>
-        {selectedAsset && (
-          <div className="drawer-content">
-            <h2>{selectedAsset.name}</h2>
-            <img src={selectedAsset.icon} alt={selectedAsset.name} className="drawer-asset-icon" />
-            <table>
-              <tbody>
-                {Object.entries(selectedAsset.properties).map(([key, value]) => (
-                  <tr key={key}>
-                    <th>{key}</th>
-                    <td>{value}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div> */}
     </div>
   );
 };

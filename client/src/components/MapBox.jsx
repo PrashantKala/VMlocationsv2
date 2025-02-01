@@ -24,7 +24,8 @@ function MapBox({ selectedAsset, openDrawer }) {
           for (const item of category.items) {
             if (item.longitude && item.latitude) {
               const popupContent = document.createElement('div');
-              popupContent.style.width = '400px'; // Set an appropriate width for your content
+              popupContent.classList.add('popup-container'); // Add a class
+              // popupContent.style.width = '400px'; // Set an appropriate width for your content
               popupContent.style.minHeight = '100px'; // Set a minimum height if needed
               popupContent.style.overflow = 'visible'; // Allow content to expand
               popupContent.innerHTML = `<div id="popup-${item.name.replace(/\s+/g, '-')}" ></div>`;

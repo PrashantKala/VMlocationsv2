@@ -6,7 +6,7 @@
         {
           "name": "Animate",
           "icon": "/images/Animate_logo.png",
-          "status": "active",
+          "status": "ready",
           "longitude": -122.4194,
           "latitude": 37.7749,
           "services": [
@@ -29,7 +29,7 @@
         {
           "name": "Evensoft",
           "icon": "/images/Evensoft_logo.png",
-          "status": "active",
+          "status": "ready",
           "longitude": -111.4194,
           "latitude": 29.7749,
           "services": [
@@ -57,7 +57,7 @@
         {
           "name": "Awsservices3",
           "icon": "/images/AmazonS3_logo.png",
-          "status": "inactive",
+          "status": "poweredoff",
           "longitude": -144.4194,
           "latitude": 47.7749,
           "services": [
@@ -86,8 +86,8 @@
       "items": [
         {
           "name": "Cubic_Central_01",
-          "icon": "public/images/poweringon_hypersphere.png",
-          "status": "active",
+          "icon": "/images/Animate_logo.png",
+          "status": "poweredoff",
           "longitude": -100.4194,
           "latitude": 155.7749,
           "services": [
@@ -114,8 +114,8 @@
       "items": [
         {
           "name": "Cubic_01",
-          "icon": "public/images/poweringon_hypersphere.png",
-          "status": "inactive",
+          "icon": "/images/Animate_logo.png",
+          "status": "unmanaged",
           "longitude": -166.4194,
           "latitude": 47.7749,
           "services": [
@@ -137,8 +137,8 @@
         },
         {
           "name": "Cubic_East_01",
-          "icon": "public/images/poweringon_hypersphere.png",
-          "status": "inactive",
+          "icon": "/images/Animate_logo.png",
+          "status": "poweredoff",
           "services": [
             { "name": "Mesh", "state": "ready", "url": "https://animate.eventsoft.link.to/mesh", "type": "web_service" },
             { "name": "Virtual Internet", "state": "ready", "url": "Internal", "type": "web_service" },
@@ -163,8 +163,8 @@
       "items": [
         {
           "name": "Cubic_West_01",
-          "icon": "public/images/poweringon_hypersphere.png",
-          "status": "inactive",
+          "icon": "/images/Animate_logo.png",
+          "status": "poweredoff",
           "longitude": -100.4194,
           "latitude": 66.7749,
           "services": [
