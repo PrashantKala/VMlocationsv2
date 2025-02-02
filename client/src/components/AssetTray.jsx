@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import asset from "../assets.json";
+import logo from "/images/logo.png"
+import mobile_logo from "/images/480_logo.png"
 
-const Navbar = ({ onSelectAsset, openDrawer }) => {
+const Navbar = ({ setinfoSelectedAsset,onSelectAsset, openDrawer }) => {
   const [activeTab, setActiveTab] = useState(null);
   const [hoveredAsset, setHoveredAsset] = useState(null);
 
@@ -26,11 +28,19 @@ const Navbar = ({ onSelectAsset, openDrawer }) => {
     error: "red",
   };
 
+  const infoClicked=(asset)=>{
+    console.log("clicked");
+    onSelectAsset(null);
+    setinfoSelectedAsset(asset);
+    openDrawer();
+    console.log("clicked");
+  }
+
 
   return (
     <div className="navbar">
       <div className="navbar-logo">
-        <img src="public/images/logo.png" alt="Company Logo" className="logo-img" />
+        <img src={window.innerWidth>768?logo:mobile_logo} alt="Company Logo" className="logo-img" />
       </div>
 
       <div className="asset-tray">
@@ -58,8 +68,7 @@ const Navbar = ({ onSelectAsset, openDrawer }) => {
                     <div className="asset-items-holder" key={asset.name}>
                       <div className={`asset-card ${asset.status}`}>
                       <div className={`status-dot ${statusColors[asset.status]}`}></div>
-                      {console.log(asset.status)}
-                        <div className="info-button" onMouseEnter={() => setHoveredAsset(asset)} onMouseLeave={() => setHoveredAsset(null)}>ℹ</div>
+                        <div className="info-button" onClick={()=>window.innerWidth<=768?infoClicked(asset):setinfoSelectedAsset(null)} onMouseEnter={() => window.innerWidth>768? setHoveredAsset(asset):setHoveredAsset(null)} onMouseLeave={() => setHoveredAsset(null)}>ℹ</div>
                         {hoveredAsset === asset && (
                           <div className="tooltip-card" onMouseEnter={() => setHoveredAsset(asset)} onMouseLeave={() => setHoveredAsset(null)}>
                             <h4>{asset.name}</h4>
@@ -89,7 +98,7 @@ const Navbar = ({ onSelectAsset, openDrawer }) => {
         )}
       </div>
 
-      <button className="logout-button" onClick={handleLogout}>Log Out</button>
+      <button  className={`logout-button${window.innerWidth>768?"":"-img"}`} onClick={handleLogout}>{window.innerWidth>768?"Log Out":<img className="log_out_png" src="/images/log_out.png" />}</button>
 
     </div>
   );

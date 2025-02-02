@@ -24,6 +24,7 @@ import { useNavigate } from 'react-router-dom';
 const Homepage = () => {
     const [selectedAsset, setSelectedAsset] = useState(null);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [infoSelectedAsset, setinfoSelectedAsset] = useState(false);
     const navigate = useNavigate();
 
     // useEffect(() => {
@@ -46,17 +47,35 @@ const Homepage = () => {
   return (
    <>
         {/* <Navbar/> */}
-        <Navbar selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer}  />
+        <Navbar setinfoSelectedAsset={setinfoSelectedAsset} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer}  />
         <MapBox selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
         <div className={`drawer ${isDrawerOpen ? "open" : ""}`}>
         <button className="drawer-close" onClick={closeDrawer}>✖</button>
-        {selectedAsset && (
+        {selectedAsset!=null?  (
           <div className="drawer-content">
             <h2>{selectedAsset.name}</h2>
             <img src={selectedAsset.icon} alt={selectedAsset.name} className="drawer-asset-icon" />
             <table>
               <tbody>
                 {Object.entries(selectedAsset.properties).map(([key, value]) => (
+                  <tr key={key}>
+                    <th>{key}</th>
+                    <td>{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ):
+        infoSelectedAsset && (
+          <div className="drawer-content">
+          {console.log(infoSelectedAsset)}
+          {console.log(selectedAsset)}
+            <h2>{infoSelectedAsset.name}</h2>
+            <img src={infoSelectedAsset.icon} alt={infoSelectedAsset.name} className="drawer-asset-icon" />
+            <table>
+              <tbody>
+                {Object.entries(infoSelectedAsset.properties).map(([key, value]) => (
                   <tr key={key}>
                     <th>{key}</th>
                     <td>{value}</td>

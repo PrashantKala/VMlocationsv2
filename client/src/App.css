@@ -57,6 +57,26 @@
   /* Darker red on hover */
 }
 
+.logout-button-img{
+  cursor: pointer;
+  border: none;
+  background: white;
+  transition: transform 0.3s ease;
+}
+
+.logout-button-img:hover{
+  border: none;
+  background: white;
+  transform: scale(1.1);
+}
+
+.log_out_png{
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
@@ -239,11 +259,6 @@ table td a:hover {
     font-size: 0.9em;
   }
 
-  .leaflet-popup-content {
-    width: 50% !important;
-    /* Use most of the screen width */
-    max-width: 50% !important;
-  }
 
 
 }
@@ -344,7 +359,6 @@ table td a:hover {
   position: absolute;
   top: 45px;
   width: 0px;
-
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -356,6 +370,7 @@ table td a:hover {
   justify-content: center;
   gap: 2rem;
   overflow: visible;
+  margin-right: 1.5rem;
   /* flex-wrap: wrap; */
 }
 
@@ -563,7 +578,7 @@ table td a:hover {
   .asset-container {
     width: 85vw;
     /* Adjust width for smaller screens */
-    left: -50%;
+    /* left: -50%; */
     transform: none;
     /* Remove transform */
     top: 60px;
@@ -625,7 +640,7 @@ table td a:hover {
   .asset-container {
     width: 87vw;
     /* Full width for very small screens */
-    left: -80%;
+    /* left: -80%; */
     /* Align to the left */
     top: 50px;
     /* Adjust top position */
@@ -719,8 +734,9 @@ table td a:hover {
 
 /* Container Styling */
 .app-container {
+  border: 5px solid yellow;
   display: flex;
-  height: 87vh;
+  height: 600px;
   position: relative;
   background-color: #f9f9f9;
   /* Light background for contrast */
@@ -781,7 +797,7 @@ table td a:hover {
 /* Responsive styles for smaller screens */
 @media (max-width: 768px) {
   .app-container {
-    height: 80vh;
+    /* height: 80vh; */
     margin: 8px;
   }
 
@@ -809,7 +825,7 @@ table td a:hover {
 
 @media (max-width: 480px) {
   .app-container {
-    height: 80vh;
+    height: 500px;
     /* Further reduce height for very small screens */
     margin: 4px;
   }
@@ -940,15 +956,47 @@ table td a:hover {
 
 @media (max-width: 768px) {
   .drawer {
-    width: 250px;
+    width: 400px;
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+
+  }
+  
+  .drawer.open {
+    transform: translate(-50%, 0);
+  }
+  .drawer-content tbody{
+    display: flex;
+  }
+  .drawer-content tr{
+    display: flex;
+    flex-direction:column;
+    border: 1px solid black;
   }
 }
+
 @media (max-width: 480px) {
-  /* .drawer {
-    top: 10%;
-    bottom: -400px;
+  .drawer {
     width: 400px;
-    border-radius: 20px;
-  } */
-   
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+
+  }
+  
+  .drawer.open {
+    transform: translate(-50%, 0);
+  }
+  .drawer-content tbody{
+    display: flex;
+  }
+  .drawer-content tr{
+    display: flex;
+    flex-direction:column;
+    border: 1px solid black;
+  }
 }
+
