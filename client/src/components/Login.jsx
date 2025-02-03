@@ -90,7 +90,7 @@ const Login = () => {
                     onFocus={() => handleFocus('email')}
                     onBlur={() => handleBlur('email')}
                     value={logindata.email}
-                    label="E-mail Address"
+                    label="Username"
                     imgSrc={mail}
                     isFocused={emailFocused}
                     name='email'

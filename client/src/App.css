@@ -118,7 +118,7 @@
 }
 
 .header {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   display: flex;
   align-items: center;
   font-size: 1.2em;
@@ -157,7 +157,7 @@
 }
 
 .custom_card_table {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   width: 100%;
   border-collapse: collapse;
   font-size: 0.85em;
@@ -301,7 +301,8 @@ table td a:hover {
   justify-content: center;
   text-align: center;
   position: relative;
-  margin-top: 10px;
+  margin: 10px;
+  /* padding: ; */
     /* border: 2px solid yellow; */
 }
 
@@ -616,7 +617,7 @@ table td a:hover {
 
 /* Container Styling */
 .app-container {
-  border: 5px solid yellow;
+  /* border: 5px solid yellow; */
   display: flex;
   height: 600px;
   position: relative;
@@ -754,7 +755,7 @@ table td a:hover {
   }
 
   .custom_card_table{
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     width: 100%;
     /* font-size: .5rem; */
   }
