@@ -430,9 +430,16 @@
   }
   
   /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .mainContainer{
+      max-width: 100%;
+    }
+  }
   @media (max-width: 480px) {
     .mainContainer {
-      padding: 15px;
+      /* padding: 15px; */
+      /* width: 100%; */
+      max-width: 100%;
     }
   
     .mainContainer h3 {

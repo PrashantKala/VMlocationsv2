@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import mail from '../images/mail.png';
 import password from '../images/padlock.png';
 import Login_first from '../images/Login_first.png';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import invalidCredentials from '../images/invalidCredentials.png';
 import CustomInput from '../smallComponents/CustomInput';
 import CustomInputWithBtn from '../smallComponents/CustomInputWithBtn';
+import users from '../users.json';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -48,32 +47,14 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:5000/auth/login', logindata);
-            if (response.data) {
-                const currentTime = new Date().getTime(); 
-                const userDataWithTimestamp = {
-                    data: response.data,
-                    timestamp: currentTime
-                };
-                localStorage.setItem('user', JSON.stringify(userDataWithTimestamp));
-                navigate('/home');
-            }
-        } catch (error) {
-            if (error.response) {
-                console.error("Server Error:", error.response.data);
-                setIsError(true);
-
-                setTimeout(() => {
-                    setIsError(false);
-                }, 5000);
-            } else if (error.request) {
-                console.error("Network Error:", error.request);
-                alert("Network Error: Please check your connection.");
-            } else {
-                console.error("Error:", error.message);
-                alert("Error: " + error.message);
-            }
+        const validUser = users.find(user => user.email === logindata.email && user.password === logindata.password);
+        
+        if (validUser) {
+            localStorage.setItem('user', JSON.stringify({ email: validUser.email, timestamp: new Date().getTime() }));
+            navigate('/home');
+        } else {
+            setIsError(true);
+            setTimeout(() => setIsError(false), 5000);
         }
     };
 
@@ -102,7 +83,7 @@ const Login = () => {
             <form className='mainContainer' onSubmit={handleSubmit}>
                 <img src={isError ? invalidCredentials : Login_first} alt='Login' />
                 <h3>Log on to your Account</h3>
-                <p>Not a user yet? <span> <Link className='no-style-link' to='/register'>Register now</Link> </span> for a free demo.</p>
+                {/* <p>Not a user yet? <span> <Link className='no-style-link' to='/register'>Register now</Link> </span> for a free demo.</p> */}
 
                 <CustomInput
                     onChange={handleChange}
@@ -126,13 +107,13 @@ const Login = () => {
                     name='password'
                     type='password'
                 />
-
+{/* 
                 <div className='checkin'>
                     <label style={(typing ? { 'display': 'block' } : { 'display': 'none' })}>
                         <input type="checkbox" />Keep me signed in
                     </label>
                     <p><Link className='no-style-link' to='/verifyemail'>Forgot your password?</Link></p>
-                </div>
+                </div> */}
                 <button
                     type='submit'
                     className={`loginButton ${isError ? 'errorButton' : ''}`} // Add class name to toggle error class

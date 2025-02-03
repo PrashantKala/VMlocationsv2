@@ -11,7 +11,7 @@ const CustomCard = ({ name, status, services, icon }) => {
       <div className="status">
         <span>Status:</span> <span className={`state-${status.toLowerCase()}`}>{status}</span>
       </div>
-      <table>
+      <table className='custom_card_table'>
         <thead>
           <tr>
             <th>Name</th>
