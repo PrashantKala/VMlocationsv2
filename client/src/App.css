@@ -155,6 +155,10 @@
   font-weight: bold;
   color: #28a745;
 }
+.state-poweredoff {
+  font-weight: bold;
+  color: red;
+}
 
 .custom_card_table {
   /* border: 2px solid green; */
