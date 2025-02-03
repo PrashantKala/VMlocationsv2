@@ -83,7 +83,7 @@ function MapBox({ selectedAsset, openDrawer }) {
         mapRef.current.flyTo([selectedAsset.latitude, selectedAsset.longitude], 10, { animate: true, duration: 3 });
         setTimeout(() => {
           marker.openPopup();
-          mapRef.current.panBy([0, -210]); // Adjust to ensure popup is fully visible
+          window.innerWidth>768?mapRef.current.panBy([0, -210]):mapRef.current.panBy([0, -150]); // Adjust to ensure popup is fully visible
         }, 3000);
       }
     }
