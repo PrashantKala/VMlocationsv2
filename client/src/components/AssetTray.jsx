@@ -3,7 +3,7 @@ import asset from "../assets.json";
 import logo from "/images/logo.png"
 import mobile_logo from "/images/480_logo.png"
 
-const Navbar = ({activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelectAsset, openDrawer }) => {
+const Navbar = ({activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelectAsset, openDrawer,closeDrawer }) => {
 
   const [hoveredAsset, setHoveredAsset] = useState(null);
 
@@ -18,7 +18,9 @@ const Navbar = ({activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelec
   };
 
   const selectAsset = (asset) => {
-    openDrawer();
+    // openDrawer();
+    closeDrawer()
+    closed
     onSelectAsset(asset);
   };
 
@@ -62,7 +64,7 @@ const Navbar = ({activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelec
         {activeTab && (
           <div className={`asset-container ${activeTab ? "open" : ""} ${closing ? "closing" : ""}`}>
 
-            {/* <button className="close-button" onClick={() => { closeTab()}}>✖</button> */}
+            {window.innerWidth>768?<button className="close-button" onClick={() => { closeTab()}}>v</button>:""}
             <div className="category-container">
             {assets[activeTab].map(({ category, items }) => (
               <div key={category} className="asset-category">
@@ -102,7 +104,7 @@ const Navbar = ({activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelec
         )}
       </div>
 
-      <button  className={`logout-button${window.innerWidth>768?"":"-img"}`} onClick={handleLogout}>{window.innerWidth>768?"Log Out":<img className="log_out_png" src="/images/log_out.png" />}</button>
+      <button  className={`logout-button`} onClick={handleLogout}>Log Out</button>
 
     </div>
   );

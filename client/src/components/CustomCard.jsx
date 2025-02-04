@@ -1,12 +1,16 @@
 import React from 'react';
 // import './CustomCard.css';
 
-const CustomCard = ({ name, status, services, icon }) => {
+const CustomCard = ({setIsVisible,openDrawer, name, status, services, icon }) => {
   return (
     <div className="card">
       <div className="header">
         <img src={icon}/>
-        <h2>{name}</h2>
+        <div className="header-content">
+          <div></div>
+          <h2 >{name}</h2>
+          <button onClick={()=>{openDrawer();setIsVisible(true);}} >More Details</button>
+        </div>
       </div>
       <div className="status">
         <span>Status:</span> <span className={`state-${status.toLowerCase()}`}>{status}</span>

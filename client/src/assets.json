@@ -86,7 +86,7 @@
       "items": [
         {
           "name": "Cubic_Central_01",
-          "icon": "/images/Animate_logo.png",
+          "icon": "/images/CUBIC_LOGO_ICON.png",
           "status": "poweredoff",
           "longitude": -100.4194,
           "latitude": 155.7749,
@@ -114,7 +114,7 @@
       "items": [
         {
           "name": "Cubic_01",
-          "icon": "/images/Animate_logo.png",
+          "icon": "/images/CUBIC_LOGO_ICON.png",
           "status": "unmanaged",
           "longitude": -166.4194,
           "latitude": 47.7749,
@@ -137,8 +137,10 @@
         },
         {
           "name": "Cubic_East_01",
-          "icon": "/images/Animate_logo.png",
+          "icon": "/images/CUBIC_LOGO_ICON.png",
           "status": "poweredoff",
+          "longitude": -106.4194,
+          "latitude": 17.7749,
           "services": [
             { "name": "Mesh", "state": "ready", "url": "https://animate.eventsoft.link.to/mesh", "type": "web_service" },
             { "name": "Virtual Internet", "state": "ready", "url": "Internal", "type": "web_service" },
@@ -163,7 +165,7 @@
       "items": [
         {
           "name": "Cubic_West_01",
-          "icon": "/images/Animate_logo.png",
+          "icon": "/images/CUBIC_LOGO_ICON.png",
           "status": "poweredoff",
           "longitude": -100.4194,
           "latitude": 66.7749,
