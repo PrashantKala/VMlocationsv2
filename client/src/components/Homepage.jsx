@@ -25,6 +25,16 @@ const Homepage = () => {
     const [selectedAsset, setSelectedAsset] = useState(null);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [infoSelectedAsset, setinfoSelectedAsset] = useState(false);
+    const [closing, setClosing] = useState(false);
+    const [activeTab, setActiveTab] = useState(null);
+    const tabs = ["In-Cloud", "On-Prem"];
+    const closeTab = (tab) => {
+      setClosing(true);
+      setTimeout(() => {
+        setActiveTab(activeTab === tab ? null : tab);
+        setClosing(false);
+      }, 100); // Wait for animation to finish
+    };
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -47,10 +57,10 @@ const Homepage = () => {
   return (
    <>
         {/* <Navbar/> */}
-        <Navbar setinfoSelectedAsset={setinfoSelectedAsset} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer}  />
-        <MapBox selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
+        <Navbar closing={closing} activeTab={activeTab} closeTab={closeTab} tabs={tabs} setinfoSelectedAsset={setinfoSelectedAsset} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer}  />
+        <MapBox setActiveTab={setActiveTab} closeTab={closeTab} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
         <div className={`drawer ${isDrawerOpen ? "open" : ""}`}>
-        <button className="drawer-close" onClick={closeDrawer}>✖</button>
+        {isDrawerOpen?<button className="drawer-close" onClick={closeDrawer}>{">"}</button>:<button className="drawer-open" onClick={openDrawer}>{"<"}</button>}
         {selectedAsset!=null?  (
           <div className="drawer-content">
             <h2>{selectedAsset.name}</h2>
@@ -66,8 +76,8 @@ const Homepage = () => {
               </tbody>
             </table>
           </div>
-        ):
-        infoSelectedAsset && (
+        ):"Please select an asset"}
+        {/* infoSelectedAsset && (
           <div className="drawer-content">
           {console.log(infoSelectedAsset)}
           {console.log(selectedAsset)}
@@ -84,7 +94,7 @@ const Homepage = () => {
               </tbody>
             </table>
           </div>
-        )}
+        )} */}
       </div>
 
    </>

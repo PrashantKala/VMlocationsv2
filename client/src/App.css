@@ -1,6 +1,7 @@
 * {
   margin: 0px;
   padding: 0px;
+  font-family: ;
 }
 
 /* Navbar Container */
@@ -112,7 +113,6 @@
   /* border: 1px solid #ddd; */
   /* border-radius: 8px; */
   /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-  font-family: Arial, sans-serif;
   overflow: hidden;
   /* border: 2px solid yellow; */
 }
@@ -230,20 +230,40 @@ table td a:hover {
 /* Asset Dropdown */
 .asset-container {
   position: absolute;
-  top: 45px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  /* padding: 15px; */
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  overflow: visible;
   z-index: 10000;
+  animation: up-to-down .3s 1;
+  z-index: 1000;
 }
+
+@keyframes up-to-down{
+  0%   { top: 0px;}
+  100%   { top: 42px;}
+}
+
+@keyframes down-to-up {
+  0% { top: 42px; opacity: 1; }
+  100% { top: 0px; opacity: 0; }
+}
+
+.asset-container.open {
+  top: 42px;
+}
+
+
+.asset-container.closing {
+  animation: down-to-up 0.3s forwards;
+}
+
+
 
 .asset-category {
   /* border: 2px solid purple; */
@@ -255,6 +275,7 @@ table td a:hover {
   justify-content: center; 
   /* width: 40%; */
   flex: 1;
+  padding: 5px;
 }
 
 /* Close Button */
@@ -299,7 +320,7 @@ table td a:hover {
   /* border-radius: 8px; */
   background-color: #fff;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -310,12 +331,9 @@ table td a:hover {
     /* border: 2px solid yellow; */
 }
 
-.asset-card {
-  display: inline-flex;
-  /* border: 2px solid green; */
-}
 
 .asset-card img.asset-icon {
+  cursor: pointer;
   display: flex;
   width: 100%;
   height: 60px;
@@ -338,8 +356,8 @@ table td a:hover {
 .status-dot,
 .info-button,
 .plus-button {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   position: absolute;
 }
@@ -477,8 +495,9 @@ table td a:hover {
     width: auto;
     /* Allow categories to take up as much space as needed */
     /* flex: none; Disable flex growth */
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
     /* Add margin between categories */
+
   }
 
   .asset-items {
@@ -797,18 +816,18 @@ table td a:hover {
 
 .drawer {
   position: fixed;
-  top: 32%;
-  right: -400px;
+  top: 0px;
+  right: -340px;
   width: 300px;
   border-radius: 20px;
-  /* height: 50%; */
+  height: 100%;
   background: white;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
   transition: right 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   padding: 0px 20px 0px 20px;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   z-index: 10000;
 }
 
@@ -816,15 +835,40 @@ table td a:hover {
   right: 0;
 }
 
-.drawer-close {
-  align-self: flex-end;
-  border: none;
-  background: none;
-  font-size: 20px;
+.drawer-open {
+  /* border: 2px solid black; */
+  background-color: black;
+  color: white;
+  z-index: 100000000;
+  width: 30px;
+  bottom: 10vh;
+  left: -30px;
+  border-radius: 50% 0px 0px 50%;
+  /* align-self: flex-end; */
+  /* border: none; */
+  /* background: none; */
+  font-size: 30px;
   cursor: pointer;
   position: absolute;
 }
 
+
+.drawer-close {
+  /* border: 2px solid black; */
+  background-color: black;
+  color: white;
+  z-index: 100000000;
+  width: 30px;
+  bottom: 10vh;
+  left: 0px;
+  border-radius: 0% 50% 50% 0%;
+  /* align-self: flex-end; */
+  /* border: none; */
+  /* background: none; */
+  font-size: 30px;
+  cursor: pointer;
+  position: absolute;
+}
 .drawer-content {
   text-align: center;
 }
