@@ -1,15 +1,19 @@
 import React from 'react';
 // import './CustomCard.css';
 
-const CustomCard = ({setIsVisible,openDrawer, name, status, services, icon }) => {
+const CustomCard = ({ reset, setIsVisible, openDrawer, name, status, services, icon }) => {
+  const relode = () => {
+    reset()
+  }
   return (
     <div className="card">
+      <button style={{position:"absolute", border:"none", cursor:"pointer",top:"8px", left:"8px",fontSize:"1rem"}} onClick={relode}>↺ </button>
       <div className="header">
-        <img src={icon}/>
+        <img src={icon} />
         <div className="header-content">
           <div></div>
           <h2 >{name}</h2>
-          <button onClick={()=>{openDrawer();setIsVisible(true);}} >More Details</button>
+          <button onClick={() => { openDrawer(); setIsVisible(true); }} >More Details</button>
         </div>
       </div>
       <div className="status">

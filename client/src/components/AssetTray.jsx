@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import asset from "../assets.json";
 import logo from "/images/logo.png"
 import mobile_logo from "/images/480_logo.png"
-
+import _ from 'lodash';
 const Navbar = ({activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelectAsset, openDrawer,closeDrawer }) => {
 
   const [hoveredAsset, setHoveredAsset] = useState(null);
@@ -64,7 +64,7 @@ const Navbar = ({activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelec
         {activeTab && (
           <div className={`asset-container ${activeTab ? "open" : ""} ${closing ? "closing" : ""}`}>
 
-            {window.innerWidth>768?<button className="close-button" onClick={() => { closeTab()}}>v</button>:""}
+            {window.innerWidth>768?<button className="close-button" onClick={() => { closeTab()}}>^</button>:""}
             <div className="category-container">
             {assets[activeTab].map(({ category, items }) => (
               <div key={category} className="asset-category">

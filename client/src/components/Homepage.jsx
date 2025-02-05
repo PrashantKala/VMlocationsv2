@@ -23,6 +23,11 @@ const checkAndClearExpiredData = () => {
 
 const Homepage = () => {
   const [isVisible, setIsVisible] = useState(true);
+    const [seed, setSeed] = useState(1);
+    const reset = () => {
+      setActiveTab(null)
+      setSeed(Math.random());
+    }
 
   const toggleDisplay = () => {
     setIsVisible((prev) => !prev);
@@ -63,7 +68,7 @@ const Homepage = () => {
     <>
       {/* <Navbar/> */}
       <Navbar closing={closing} activeTab={activeTab} closeTab={closeTab} tabs={tabs} setinfoSelectedAsset={setinfoSelectedAsset} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
-      <MapBox setIsVisible={setIsVisible} setActiveTab={setActiveTab} closeTab={closeTab} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
+      <MapBox reset={reset} key={seed} setIsVisible={setIsVisible} setActiveTab={setActiveTab} closeTab={closeTab} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
       {(window.innerWidth > 768) || (window.innerWidth < 768 && selectedAsset != null) ? <div style={window.innerWidth > 768 ? {} : {
         display: isVisible ? "flex" : "none",
       }} className={`drawer ${isDrawerOpen ? "open" : ""}`}>

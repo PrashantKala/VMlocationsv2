@@ -7,7 +7,7 @@ import { createRoot } from 'react-dom/client';
 
 
 
-function MapBox({ setIsVisible,closeTab, onSelectAsset,selectedAsset, openDrawer,closeDrawer }) {
+function MapBox({ reset={reset}, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
   const mapRef = useRef(null);
   const markersRef = useRef({});
 
@@ -23,8 +23,8 @@ function MapBox({ setIsVisible,closeTab, onSelectAsset,selectedAsset, openDrawer
 
       const addMarkers = (assets) => {
         // console.log(data)
-        for(const key in assets){
-          const data=assets[key]
+        for (const key in assets) {
+          const data = assets[key]
           for (const category of data) {
             for (const item of category.items) {
               if (item.longitude && item.latitude) {
@@ -34,7 +34,7 @@ function MapBox({ setIsVisible,closeTab, onSelectAsset,selectedAsset, openDrawer
                 popupContent.style.minHeight = '100px'; // Set a minimum height if needed
                 popupContent.style.overflow = 'visible'; // Allow content to expand
                 popupContent.innerHTML = `<div id="popup-${item.name.replace(/\s+/g, '-')}" ></div>`;
-  
+
                 const statusColors = {
                   poweringon: "black",
                   poweredoff: "grey",
@@ -42,7 +42,7 @@ function MapBox({ setIsVisible,closeTab, onSelectAsset,selectedAsset, openDrawer
                   ready: "green",
                   error: "red",
                 };
-                
+
                 const marker = L.marker([item.latitude, item.longitude], {
                   icon: L.divIcon({
                     html: `<div style="
@@ -83,23 +83,23 @@ function MapBox({ setIsVisible,closeTab, onSelectAsset,selectedAsset, openDrawer
                     iconSize: [30, 30],
                   }),
                 }).addTo(map);
-                
-  
+
+
                 marker.bindPopup(popupContent);
                 markersRef.current[item.name] = marker;
-  
+
                 marker.on("click", () => {
                   // openDrawer();
                   // console.log(data)
-                  
+
 
                 });
-  
+
                 marker.on('popupopen', () => {
                   const rootElement = document.getElementById(`popup-${item.name.replace(/\s+/g, '-')}`);
                   if (rootElement) {
                     const root = createRoot(rootElement);
-                    root.render(<CustomCard setIsVisible={setIsVisible} openDrawer={openDrawer}  name={item.name} status={item.status} services={item.services} icon={item.icon} />);
+                    root.render(<CustomCard reset={reset}  setIsVisible={setIsVisible} openDrawer={openDrawer} name={item.name} status={item.status} services={item.services} icon={item.icon} />);
                     marker.reactRoot = root;
                   }
                   onSelectAsset(item)
@@ -108,7 +108,7 @@ function MapBox({ setIsVisible,closeTab, onSelectAsset,selectedAsset, openDrawer
                   // }
                   // activeTab!=key?closeTab(key)
                 });
-  
+
                 marker.on('popupclose', () => {
                   if (marker.reactRoot) {
                     marker.reactRoot.unmount();
@@ -130,7 +130,7 @@ function MapBox({ setIsVisible,closeTab, onSelectAsset,selectedAsset, openDrawer
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;
-        
+
       }
     };
   }, []);
@@ -140,11 +140,11 @@ function MapBox({ setIsVisible,closeTab, onSelectAsset,selectedAsset, openDrawer
       const marker = markersRef.current[selectedAsset.name];
       if (marker) {
         closeDrawer();
-        mapRef.current.flyTo([39.8283, -98.5795], 4, { animate: true, duration: 2 }); 
+        mapRef.current.flyTo([39.8283, -98.5795], 4, { animate: true, duration: 2 });
         mapRef.current.flyTo([selectedAsset.latitude, selectedAsset.longitude], 13, { animate: true, duration: 2 });
         setTimeout(() => {
           marker.openPopup();
-          window.innerWidth>768?mapRef.current.panBy([0, -210]):mapRef.current.panBy([0, -50]); // Adjust to ensure popup is fully visible
+          window.innerWidth > 768 ? mapRef.current.panBy([0, -210]) : mapRef.current.panBy([0, -50]); // Adjust to ensure popup is fully visible
         }, 3000);
       }
     }

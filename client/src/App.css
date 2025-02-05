@@ -761,7 +761,7 @@ table td a:hover {
 @media (max-width: 480px) {
   .app-container {
     margin-top: 2rem;
-    height: 75vh;
+    height: 70vh;
     /* Further reduce height for very small screens */
     /* margin: 4px; */
   }
