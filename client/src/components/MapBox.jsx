@@ -7,7 +7,7 @@ import { createRoot } from 'react-dom/client';
 
 
 
-function MapBox({ reset={reset}, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
+function MapBox({ setResetCall, resetCall, reset = { reset }, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
   const mapRef = useRef(null);
   const markersRef = useRef({});
 
@@ -99,14 +99,11 @@ function MapBox({ reset={reset}, setIsVisible, closeTab, onSelectAsset, selected
                   const rootElement = document.getElementById(`popup-${item.name.replace(/\s+/g, '-')}`);
                   if (rootElement) {
                     const root = createRoot(rootElement);
-                    root.render(<CustomCard reset={reset}  setIsVisible={setIsVisible} openDrawer={openDrawer} name={item.name} status={item.status} services={item.services} icon={item.icon} />);
+                    root.render(<CustomCard reset={reset} setIsVisible={setIsVisible} openDrawer={openDrawer} name={item.name} status={item.status} services={item.services} icon={item.icon} />);
                     marker.reactRoot = root;
                   }
                   onSelectAsset(item)
                   closeTab(key)
-                  // if(activeTab!=key){
-                  // }
-                  // activeTab!=key?closeTab(key)
                 });
 
                 marker.on('popupclose', () => {
@@ -138,14 +135,21 @@ function MapBox({ reset={reset}, setIsVisible, closeTab, onSelectAsset, selected
   useEffect(() => {
     if (selectedAsset && mapRef.current) {
       const marker = markersRef.current[selectedAsset.name];
-      if (marker) {
+      if (marker && resetCall) {
+        closeDrawer();
+        mapRef.current.setView([selectedAsset.latitude, selectedAsset.longitude], 13);
+        marker.openPopup();
+        window.innerWidth > 768 ? mapRef.current.panBy([0, -210]) : mapRef.current.panBy([0, -50]);
+        setResetCall(0)
+      }
+      else if (marker) {
         closeDrawer();
         mapRef.current.flyTo([39.8283, -98.5795], 4, { animate: true, duration: 2 });
-        mapRef.current.flyTo([selectedAsset.latitude, selectedAsset.longitude], 13, { animate: true, duration: 2 });
+        mapRef.current.flyTo([selectedAsset.latitude, selectedAsset.longitude], 13, { animate: true, duration: 1 });
         setTimeout(() => {
           marker.openPopup();
-          window.innerWidth > 768 ? mapRef.current.panBy([0, -210]) : mapRef.current.panBy([0, -50]); // Adjust to ensure popup is fully visible
-        }, 3000);
+          window.innerWidth > 768 ? mapRef.current.panBy([0, -210]) : mapRef.current.panBy([0, -50]); 
+        }, 1000);
       }
     }
   }, [selectedAsset]);

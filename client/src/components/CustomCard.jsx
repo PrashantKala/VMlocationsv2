@@ -3,7 +3,7 @@ import React from 'react';
 
 const CustomCard = ({ reset, setIsVisible, openDrawer, name, status, services, icon }) => {
   const relode = () => {
-    reset()
+    reset(1)
   }
   return (
     <div className="card">
