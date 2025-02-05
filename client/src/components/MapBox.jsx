@@ -19,7 +19,6 @@ function MapBox({ setIsVisible,closeTab, onSelectAsset,selectedAsset, openDrawer
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: '© OpenStreetMap contributors',
       }).addTo(map);
 
       const addMarkers = (assets) => {
@@ -145,7 +144,7 @@ function MapBox({ setIsVisible,closeTab, onSelectAsset,selectedAsset, openDrawer
         mapRef.current.flyTo([selectedAsset.latitude, selectedAsset.longitude], 13, { animate: true, duration: 2 });
         setTimeout(() => {
           marker.openPopup();
-          window.innerWidth>768?mapRef.current.panBy([0, -210]):mapRef.current.panBy([0, -150]); // Adjust to ensure popup is fully visible
+          window.innerWidth>768?mapRef.current.panBy([0, -210]):mapRef.current.panBy([0, -50]); // Adjust to ensure popup is fully visible
         }, 3000);
       }
     }

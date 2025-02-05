@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
 * {
   margin: 0px;
   padding: 0px;
-  font-family: 'Poppins';
+  font-family: 'poppins-bold', sans-serif !important;
 }
 
 /* Navbar Container */
@@ -142,6 +143,7 @@
   width: 20%;
   background: #f0f0f0;
   /* border: 1px solid #ddd; */
+  border: none;
   border-radius: 5px;
   font-size: 10px;
   cursor: pointer;
@@ -495,7 +497,7 @@ table td a:hover {
   .asset-container {
     width: 85vw;
     /* Adjust width for smaller screens */
-    /* left: -50%; */
+    left: -5%;
     transform: none;
     /* Remove transform */
     top: 60px;
@@ -681,7 +683,6 @@ table td a:hover {
   position: relative;
   background-color: #ffffff;
   /* Light background for contrast */
-  font-family: 'Arial', sans-serif;
   /* Clean, modern font */
   color: #333;
   /* Dark text for readability */
@@ -702,13 +703,6 @@ table td a:hover {
   margin: 16px;
   /* Add some spacing around the map */
   border-radius: 12px;
-}
-
-/* Add interactive hover effect for the map on smaller devices */
-#map:hover {
-  transform: scale(1.01);
-  /* Slight zoom on hover */
-  transition: transform 0.3s ease-in-out;
 }
 
 .leaflet-popup-content {
@@ -766,6 +760,7 @@ table td a:hover {
 
 @media (max-width: 480px) {
   .app-container {
+    margin-top: 2rem;
     height: 75vh;
     /* Further reduce height for very small screens */
     /* margin: 4px; */
@@ -782,7 +777,7 @@ table td a:hover {
     /* Adjust font size for readability */
     /* padding: 10px; */
     /* Add some padding for spacing */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
     /* Subtle shadow for smaller screens */
   }
 
@@ -821,9 +816,10 @@ table td a:hover {
   }
 
   .custom_card_table{
-    /* border: 2px solid pink; */
+    border: 2px solid black;
     width: 100%;
     /* font-size: .5rem; */
+    border: none;
   }
 
 
@@ -835,7 +831,7 @@ table td a:hover {
   }
 
   .popup-container{
-    width: 240px;
+    width: 230px;
   }
 
 }
@@ -951,20 +947,14 @@ table td a:hover {
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 100%);
+    /* border: none; */
 
   }
   
   .drawer.open {
     transform: translate(-50%, 0);
   }
-  .drawer-content tbody{
-    /* display: flex; */
-  }
-  .drawer-content tr{
-    /* display: flex; */
-    /* flex-direction:column; */
-    border: 1px solid black;
-  }
+
 }
 
 @media (max-width: 480px) {
