@@ -3,7 +3,7 @@ import asset from "../assets.json";
 import logo from "/images/logo.png"
 import mobile_logo from "/images/480_logo.png"
 import _ from 'lodash';
-const Navbar = ({activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelectAsset, openDrawer,closeDrawer }) => {
+const Navbar = ({isCustomCard,setWhoIsActive, activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelectAsset, openDrawer,closeDrawer }) => {
 
   const [hoveredAsset, setHoveredAsset] = useState(null);
 
@@ -20,7 +20,6 @@ const Navbar = ({activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelec
   const selectAsset = (asset) => {
     // openDrawer();
     closeDrawer()
-    closed
     onSelectAsset(asset);
   };
 
@@ -54,7 +53,7 @@ const Navbar = ({activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelec
               key={tab}
               className={`tab ${activeTab === tab ? "active" : ""}`}
               // onClick={() => {setActiveTab(activeTab === tab ? null : tab)}}
-              onClick={() => closeTab(tab)}
+              onClick={() => {closeTab(tab);if(!isCustomCard){setWhoIsActive(activeTab === tab ? null : tab)}}}
             >
               {tab}
             </button>

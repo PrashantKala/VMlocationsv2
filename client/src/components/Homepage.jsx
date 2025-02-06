@@ -22,18 +22,12 @@ const checkAndClearExpiredData = () => {
 
 
 const Homepage = () => {
+  const [isCustomCard,setIsCustomCard]=useState(false);
+  const [whoIsActive, setWhoIsActive] = useState(null)
   const [isVisible, setIsVisible] = useState(true);
-    const [seed, setSeed] = useState(1);
-    const [resetCall,setResetCall]=useState(0);
-    const reset = (val) => {
-      setResetCall(val);
-      setActiveTab(null)
-      setSeed(Math.random());
-    }
+  const [seed, setSeed] = useState(1);
+  const [resetCall, setResetCall] = useState(0);
 
-  const toggleDisplay = () => {
-    setIsVisible((prev) => !prev);
-  };
   const [selectedAsset, setSelectedAsset] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [infoSelectedAsset, setinfoSelectedAsset] = useState(false);
@@ -45,7 +39,16 @@ const Homepage = () => {
     setTimeout(() => {
       setActiveTab(activeTab === tab ? null : tab);
       setClosing(false);
-    }, 100); // Wait for animation to finish
+    }, 100);
+  };
+  const reset = (val) => {
+    setResetCall(val);
+    setActiveTab(null)
+    setSeed(Math.random());
+  }
+
+  const toggleDisplay = () => {
+    setIsVisible((prev) => !prev);
   };
   const navigate = useNavigate();
 
@@ -69,12 +72,12 @@ const Homepage = () => {
   return (
     <>
       {/* <Navbar/> */}
-      <Navbar closing={closing} activeTab={activeTab} closeTab={closeTab} tabs={tabs} setinfoSelectedAsset={setinfoSelectedAsset} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
-      <MapBox resetCall={resetCall} setResetCall={setResetCall} reset={reset} key={seed} setIsVisible={setIsVisible} setActiveTab={setActiveTab} closeTab={closeTab} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
+      <Navbar isCustomCard={isCustomCard} whoIsActive={whoIsActive} setWhoIsActive={setWhoIsActive} closing={closing} activeTab={activeTab} closeTab={closeTab} tabs={tabs} setinfoSelectedAsset={setinfoSelectedAsset} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
+      <MapBox setIsCustomCard={setIsCustomCard} isCustomCard={isCustomCard} setWhoIsActive={setWhoIsActive} whoIsActive={whoIsActive} resetCall={resetCall} setResetCall={setResetCall} reset={reset} key={seed} setIsVisible={setIsVisible} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTab} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
       {(window.innerWidth > 768) || (window.innerWidth < 768 && selectedAsset != null) ? <div style={window.innerWidth > 768 ? {} : {
         display: isVisible ? "flex" : "none",
       }} className={`drawer ${isDrawerOpen ? "open" : ""}`}>
-        {isDrawerOpen ? <button className="drawer-close" onClick={()=>window.innerWidth>768? closeDrawer():toggleDisplay()}>{window.innerWidth > 768 ? ">" : "v"}</button> : <button className="drawer-open" onClick={openDrawer}>{window.innerWidth > 768 ? "<" : "^"}</button>}
+        {isDrawerOpen ? <button className="drawer-close" onClick={() => window.innerWidth > 768 ? closeDrawer() : toggleDisplay()}>{window.innerWidth > 768 ? ">" : "v"}</button> : <button className="drawer-open" onClick={openDrawer}>{window.innerWidth > 768 ? "<" : "^"}</button>}
         {selectedAsset != null ? (
           <div className="drawer-content">
             <h2>{selectedAsset.name}</h2>
