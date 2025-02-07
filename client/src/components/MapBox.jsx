@@ -5,7 +5,7 @@ import assets from '../assets.json';
 import CustomCard from './CustomCard';
 import { createRoot } from 'react-dom/client';
 
-function MapBox({setIsCustomCard, isCustomCard, setWhoIsActive, whoIsActive, setResetCall, resetCall, reset, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
+function MapBox({setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, resetCall, reset, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
   const mapRef = useRef(null);
   const markersRef = useRef({});
 
@@ -34,10 +34,13 @@ function MapBox({setIsCustomCard, isCustomCard, setWhoIsActive, whoIsActive, set
       ready: 'green',
       error: 'red',
     };
-
+    const isError = item.status === 'error';
                 const marker = L.marker([item.latitude, item.longitude], {
                   icon: L.divIcon({
-                    html: `<div style="
+                    html: `
+                          <div class="marker-wrapper">
+          ${isError ? '<div class="radiation-effect"></div>' : ''}                    
+                    <div style="
                       position: relative;
                       background: white; 
                       border-radius: 50%; 
@@ -59,7 +62,7 @@ function MapBox({setIsCustomCard, isCustomCard, setWhoIsActive, whoIsActive, set
                         background-color: ${statusColors[item.status] || 'grey'};
                         border: 2px solid white;
                       "></div>
-                    </div>
+                    </div><div/>
                     <div style="
                       z-index: 100; 
                       position: fixed; 
