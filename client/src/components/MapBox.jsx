@@ -1,15 +1,11 @@
-import React, { useEffect, memo ,useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import assets from '../assets.json';
 import CustomCard from './CustomCard';
 import { createRoot } from 'react-dom/client';
-import { debounce } from 'lodash';
 
-
-const MapBox = memo(({ setIsCustomCard, isCustomCard, setWhoIsActive, whoIsActive, setResetCall, resetCall, reset, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) => {
-  const debouncedSetWhoIsActive = debounce(setWhoIsActive, 300);
-  const debouncedSetIsCustomCard = debounce(setIsCustomCard, 300);
+function MapBox({setIsCustomCard, isCustomCard, setWhoIsActive, whoIsActive, setResetCall, resetCall, reset, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
   const mapRef = useRef(null);
   const markersRef = useRef({});
 
@@ -39,32 +35,46 @@ const MapBox = memo(({ setIsCustomCard, isCustomCard, setWhoIsActive, whoIsActiv
       error: 'red',
     };
 
-    const marker = L.marker([item.latitude, item.longitude], {
-      icon: L.divIcon({
-        html: `<div style="
-                  position: relative;
-                  background: white;
-                  border-radius: 50%;
-                  width: 50px;
-                  height: 50px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  z-index: 10000;">
-                <img src="${item.icon}" style="z-index: 10000; width: 40px; height: 40px; border-radius: 50%;" />
-                <div style="
-                  position: absolute;
-                  top: -3px;
-                  left: -3px;
-                  width: 15px;
-                  height: 15px;
-                  border-radius: 50%;
-                  background-color: ${statusColors[item.status] || 'grey'};
-                  border: 2px solid white;
-                "></div>
-              </div>`
-      }),
-    }).addTo(map);
+                const marker = L.marker([item.latitude, item.longitude], {
+                  icon: L.divIcon({
+                    html: `<div style="
+                      position: relative;
+                      background: white; 
+                      border-radius: 50%; 
+                      width: 50px; 
+                      height: 50px; 
+                      display: flex; 
+                      align-items: center; 
+                      justify-content: center; 
+                      z-index: 10000;
+                    ">
+                      <img src="${item.icon}" style="z-index: 10000; width: 40px; height: 40px; border-radius: 50%;" />
+                      <div style="
+                        position: absolute;
+                        top: -3px;
+                        left: -3px;
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 50%;
+                        background-color: ${statusColors[item.status] || 'grey'};
+                        border: 2px solid white;
+                      "></div>
+                    </div>
+                    <div style="
+                      z-index: 100; 
+                      position: fixed; 
+                      bottom: -25px; 
+                      left: 70%; 
+                      border-radius: 0% 0% 50% 50%;  
+                      display: flex; 
+                      width: 5px; 
+                      height: 20px; 
+                      background-color: white;
+                    "></div>`,
+                    className: "",
+                    iconSize: [30, 30],
+                  }),
+                }).addTo(map);
 
     marker.bindPopup(popupContent);
     markersRef.current[item.name] = marker;
@@ -91,10 +101,8 @@ const MapBox = memo(({ setIsCustomCard, isCustomCard, setWhoIsActive, whoIsActiv
       });
     }
   };
+
   const handlePopupOpen = (item, key, marker) => {
-    if (marker.popupIsOpen) return;
-    marker.popupIsOpen = true;
-  
     const rootElement = document.getElementById(`popup-${item.name.replace(/\s+/g, '-')}`);
     if (rootElement) {
       const root = createRoot(rootElement);
@@ -114,29 +122,23 @@ const MapBox = memo(({ setIsCustomCard, isCustomCard, setWhoIsActive, whoIsActiv
   
     onSelectAsset(item);
   
-    // Open the tab only if it's not already active
+    // Ensure tab opens again if it was previously closed
     if (whoIsActive !== key) {
-      debouncedSetWhoIsActive(key);
+      setWhoIsActive(key);
     }
-    closeTab(key);
   
-    // Set isCustomCard to true only if it's currently false to avoid duplicate animation
-    if (!isCustomCard) {
-      debouncedSetIsCustomCard(true);
-    }
+    closeTab(key);
+    setIsCustomCard(true);
   };
   
+
   const handlePopupClose = (marker) => {
     if (marker.reactRoot) {
+      // setIsCustomCard(false)
       marker.reactRoot.unmount();
     }
-  
-    // Set isCustomCard to false only if it's currently true
-    if (isCustomCard) {
-      setIsCustomCard(false);
-    }
+    setIsCustomCard(false);
   };
-  
 
   useEffect(() => {
     initializeMap();
@@ -171,8 +173,8 @@ const MapBox = memo(({ setIsCustomCard, isCustomCard, setWhoIsActive, whoIsActiv
         closeDrawer();
         mapRef.current.flyTo([39.8283, -98.5795], 4, { animate: true, duration: 2 });
         mapRef.current.flyTo([selectedAsset.latitude, selectedAsset.longitude], 13, { animate: true, duration: 1 });
+        marker.openPopup();
         setTimeout(() => {
-          marker.openPopup();
           mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -50]);
         }, 1000);
       }
@@ -180,6 +182,8 @@ const MapBox = memo(({ setIsCustomCard, isCustomCard, setWhoIsActive, whoIsActiv
   }, [selectedAsset]);
 
   return <div className="app-container"><div id="map" className="map-container" /></div>;
-});
+}
 
 export default MapBox;
+// The  issue of tab not opening is arising when we first clicks on the tab of asset tray and unclicks it and then click on the icon on the map, the corrosponding tab not opens. but if we first click on map icon without clicking the tab of asset tray the issue not arises
+
