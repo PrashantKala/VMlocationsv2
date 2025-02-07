@@ -53,7 +53,7 @@ const Navbar = ({isCustomCard,setWhoIsActive, activeTab, closeTab, closing, tabs
               key={tab}
               className={`tab ${activeTab === tab ? "active" : ""}`}
               // onClick={() => {setActiveTab(activeTab === tab ? null : tab)}}
-              onClick={() => {closeTab(tab);if(!isCustomCard){setWhoIsActive(activeTab === tab ? null : tab)}}}
+              onClick={() => {closeTab(tab);{setWhoIsActive(activeTab === tab ? null : tab)}}}
             >
               {tab}
             </button>

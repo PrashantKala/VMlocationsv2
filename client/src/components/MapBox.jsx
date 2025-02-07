@@ -138,7 +138,7 @@ function MapBox({setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, res
   const handlePopupClose = (marker) => {
     if (marker.reactRoot) {
       // setIsCustomCard(false)
-      marker.reactRoot.unmount();
+      setTimeout(()=> marker.reactRoot.unmount(), 500);
     }
     setIsCustomCard(false);
   };
