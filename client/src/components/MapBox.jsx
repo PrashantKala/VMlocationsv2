@@ -125,7 +125,7 @@ function MapBox({setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, res
   
     onSelectAsset(item);
   
-    // Ensure tab opens again if it was previously closed
+
     if (whoIsActive !== key) {
       setWhoIsActive(key);
     }
@@ -188,5 +188,4 @@ function MapBox({setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, res
 }
 
 export default MapBox;
-// The  issue of tab not opening is arising when we first clicks on the tab of asset tray and unclicks it and then click on the icon on the map, the corrosponding tab not opens. but if we first click on map icon without clicking the tab of asset tray the issue not arises
 
