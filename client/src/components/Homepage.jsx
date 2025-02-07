@@ -22,9 +22,9 @@ const checkAndClearExpiredData = () => {
 
 
 const Homepage = () => {
-  const [isCustomCard,setIsCustomCard]=useState(false);
+  const [isCustomCard, setIsCustomCard] = useState(false);
   const [whoIsActive, setWhoIsActive] = useState(null)
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [seed, setSeed] = useState(1);
   const [resetCall, setResetCall] = useState(0);
 
@@ -73,7 +73,11 @@ const Homepage = () => {
     <>
       {/* <Navbar/> */}
       <Navbar isCustomCard={isCustomCard} whoIsActive={whoIsActive} setWhoIsActive={setWhoIsActive} closing={closing} activeTab={activeTab} closeTab={closeTab} tabs={tabs} setinfoSelectedAsset={setinfoSelectedAsset} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
+
+
       <MapBox setIsCustomCard={setIsCustomCard} isCustomCard={isCustomCard} setWhoIsActive={setWhoIsActive} whoIsActive={whoIsActive} resetCall={resetCall} setResetCall={setResetCall} reset={reset} key={seed} setIsVisible={setIsVisible} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTab} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
+
+
       {(window.innerWidth > 768) || (window.innerWidth < 768 && selectedAsset != null) ? <div style={window.innerWidth > 768 ? {} : {
         display: isVisible ? "flex" : "none",
       }} className={`drawer ${isDrawerOpen ? "open" : ""}`}>

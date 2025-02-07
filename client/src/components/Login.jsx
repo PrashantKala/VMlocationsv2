@@ -47,7 +47,12 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const validUser = users.find(user => user.email === logindata.email && user.password === logindata.password);
+        
+        // Trim spaces from email and password
+        const trimmedEmail = logindata.email.trim();
+        const trimmedPassword = logindata.password.trim();
+    
+        const validUser = users.find(user => user.email === trimmedEmail && user.password === trimmedPassword);
         
         if (validUser) {
             localStorage.setItem('user', JSON.stringify({ email: validUser.email, timestamp: new Date().getTime() }));
@@ -57,6 +62,7 @@ const Login = () => {
             setTimeout(() => setIsError(false), 5000);
         }
     };
+    
 
     const handleFocus = (field) => {
         setTyping(true);

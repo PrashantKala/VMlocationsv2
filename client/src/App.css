@@ -968,7 +968,7 @@ table td a:hover {
     /* overflow-x: auto; */
   }
   .drawer.open {
-    /* top: 0; */
+    top: 0;
   }
   .drawer-open {
     /* border: 2px solid black; */
