@@ -1,7 +1,7 @@
 import React from 'react';
 // import './CustomCard.css';
 
-const CustomCard = ({ reset, setIsVisible, openDrawer, name, status, services, icon }) => {
+const CustomCard = ({setSelectedServiceInfo, reset, setIsVisible, openDrawer, name, status, services, icon }) => {
   const relode = () => {
     reset(1)
   }
@@ -31,7 +31,7 @@ const CustomCard = ({ reset, setIsVisible, openDrawer, name, status, services, i
         <tbody>
           {services.map((service, index) => (
             <tr key={index}>
-              <td>{service.name}</td>
+              <td onClick={()=>setSelectedServiceInfo(service.name)} >{service.name}</td>
               <td className={`state-${service.state.toLowerCase()}`}>{service.state}</td>
               <td>
                 {service.url.startsWith('http') ? (

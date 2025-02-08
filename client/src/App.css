@@ -761,7 +761,7 @@ table td a:hover {
 @media (max-width: 480px) {
   .app-container {
     margin-top: 2rem;
-    height: 70vh;
+    height: 60vh;
     /* Further reduce height for very small screens */
     /* margin: 4px; */
   }
@@ -859,7 +859,7 @@ table td a:hover {
   right: -340px;
   width: 300px;
   border-radius: 20px;
-  height: 65%;
+  height: 70%;
   background: white;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
   transition: right 0.3s ease-in-out;
@@ -867,7 +867,8 @@ table td a:hover {
   flex-direction: column;
   padding: 0px 20px 0px 20px;
   /* overflow-y: auto; */
-  z-index: 10000;
+  z-index: 10000000;
+  /* overflow: visible; */
 }
 
 .drawer.open {
@@ -890,6 +891,7 @@ table td a:hover {
   font-size: 30px;
   cursor: pointer;
   position: absolute;
+
 }
 
 
@@ -910,7 +912,9 @@ table td a:hover {
   cursor: pointer;
   position: absolute;
 }
-.drawer-content {
+.drawer-content ,.drawer-content-services-info{
+  /* width: 200px; */
+  margin-left: 1rem;
   text-align: center;
 }
 
@@ -926,10 +930,11 @@ table td a:hover {
   /* margin: 10px auto; */
 }
 
-.drawer-content table{
+.drawer-content table, .drawer-content-services-info table{
   width: 100%;
   border-collapse: collapse;
   font-size: 0.85em;
+
 }
 
 .drawer-content th,
@@ -938,6 +943,21 @@ table td a:hover {
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
+
+.drawer-content-services-info th, .drawer-content-services-info td{
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  /* border: 5px solid pink; */
+  width: 40%;
+}
+.drawer-content-services-info h2{
+  margin: 0px;
+  padding: 5px;
+  font-size: larger;
+  margin-bottom: 1rem;
+}
+
 
 @media (max-width: 768px) {
   .drawer {
@@ -1009,6 +1029,15 @@ table td a:hover {
     /* flex-direction:column; */
     /* border: 1px solid black; */
   }
+
+  .drawer-content-services-info th, .drawer-content-services-info td{
+    font-size: .5rem;
+
+  }
+  .drawer-content-services-info h2{
+    font-size: 1rem;
+  }
+  
 }
 
 
@@ -1034,4 +1063,44 @@ table td a:hover {
     transform: scale(2.5);
     opacity: 0;
   }
+}
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #000;
+}
+
+.swiper-pagination-bullet {
+  background: #000;
+}
+
+.swiper-pagination-bullet-active {
+  background: #007aff;
+}
+
+
+
+
+
+.custom-pagination {
+  position: absolute;
+  top: 5px !important; /* Move it down */
+  left: 40% !important;
+  /* transform: translateX(-50%); */
+  z-index: 10;
+}
+
+.custom-pagination .swiper-pagination-bullet {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(97, 89, 89, 0.6);
+  border-radius: 50%;
+  transition: background-color 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  background-color: #007bff;
+  transform: scale(1.5);
 }

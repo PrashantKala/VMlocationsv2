@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './AssetTray';
 import MapBox from './MapBox';
+import Drawer from './Drawer';
 // import Navbar from './Navabar';
 import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const checkAndClearExpiredData = () => {
   const storedUser = localStorage.getItem('user');
@@ -27,6 +33,7 @@ const Homepage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [seed, setSeed] = useState(1);
   const [resetCall, setResetCall] = useState(0);
+  const [selectedServiceInfo,setSelectedServiceInfo]=useState(null)
 
   const [selectedAsset, setSelectedAsset] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -72,10 +79,10 @@ const Homepage = () => {
   return (
     <>
       {/* <Navbar/> */}
-      <Navbar isCustomCard={isCustomCard} whoIsActive={whoIsActive} setWhoIsActive={setWhoIsActive} closing={closing} activeTab={activeTab} closeTab={closeTab} tabs={tabs} setinfoSelectedAsset={setinfoSelectedAsset} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
+      <Navbar  isCustomCard={isCustomCard} whoIsActive={whoIsActive} setWhoIsActive={setWhoIsActive} closing={closing} activeTab={activeTab} closeTab={closeTab} tabs={tabs} setinfoSelectedAsset={setinfoSelectedAsset} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
 
 
-      <MapBox setIsCustomCard={setIsCustomCard} isCustomCard={isCustomCard} setWhoIsActive={setWhoIsActive} whoIsActive={whoIsActive} resetCall={resetCall} setResetCall={setResetCall} reset={reset} key={seed} setIsVisible={setIsVisible} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTab} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
+      <MapBox setSelectedServiceInfo={setSelectedServiceInfo} setIsCustomCard={setIsCustomCard} isCustomCard={isCustomCard} setWhoIsActive={setWhoIsActive} whoIsActive={whoIsActive} resetCall={resetCall} setResetCall={setResetCall} reset={reset} key={seed} setIsVisible={setIsVisible} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTab} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
 
 
       {(window.innerWidth > 768) || (window.innerWidth < 768 && selectedAsset != null) ? <div style={window.innerWidth > 768 ? {} : {
@@ -83,20 +90,11 @@ const Homepage = () => {
       }} className={`drawer ${isDrawerOpen ? "open" : ""}`}>
         {isDrawerOpen ? <button className="drawer-close" onClick={() => window.innerWidth > 768 ? closeDrawer() : toggleDisplay()}>{window.innerWidth > 768 ? ">" : "v"}</button> : <button className="drawer-open" onClick={openDrawer}>{window.innerWidth > 768 ? "<" : "^"}</button>}
         {selectedAsset != null ? (
-          <div className="drawer-content">
-            <h2>{selectedAsset.name}</h2>
-            <img src={selectedAsset.icon} alt={selectedAsset.name} className="drawer-asset-icon" />
-            <table>
-              <tbody>
-                {Object.entries(selectedAsset.properties).map(([key, value]) => (
-                  <tr key={key}>
-                    <th>{key}</th>
-                    <td>{value}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+
+          
+
+          <Drawer key={seed} selectedServiceInfo={selectedServiceInfo} selectedAsset={selectedAsset}/>
+
         ) : <h3 style={{ fontSize: "1.5rem", marginTop: "60%" }}>Please select an asset</h3>}
       </div> : <div style={{ display: 'none' }}></div>}
 
@@ -105,3 +103,4 @@ const Homepage = () => {
 }
 
 export default Homepage
+

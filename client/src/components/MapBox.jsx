@@ -5,7 +5,7 @@ import assets from '../assets.json';
 import CustomCard from './CustomCard';
 import { createRoot } from 'react-dom/client';
 
-function MapBox({setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, resetCall, reset, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
+function MapBox({setSelectedServiceInfo, setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, resetCall, reset, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
   const mapRef = useRef(null);
   const markersRef = useRef({});
 
@@ -111,6 +111,7 @@ function MapBox({setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, res
       const root = createRoot(rootElement);
       root.render(
         <CustomCard
+        key={key}
           reset={reset}
           setIsVisible={setIsVisible}
           openDrawer={openDrawer}
@@ -118,6 +119,7 @@ function MapBox({setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, res
           status={item.status}
           services={item.services}
           icon={item.icon}
+          setSelectedServiceInfo={setSelectedServiceInfo}
         />
       );
       marker.reactRoot = root;
@@ -178,7 +180,7 @@ function MapBox({setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, res
         mapRef.current.flyTo([selectedAsset.latitude, selectedAsset.longitude], 13, { animate: true, duration: 1 });
         marker.openPopup();
         setTimeout(() => {
-          mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -50]);
+          mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -150]);
         }, 1000);
       }
     }

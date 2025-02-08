@@ -5,7 +5,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 const Drawer = ({ selectedServiceInfo, selectedAsset }) => {
     return (
         <div style={{overflowY:"auto"}}>
-            <Swiper navigation={false} pagination={{ clickable: true, el: ".custom-pagination" }} modules={[Navigation, Pagination]}>
+            <Swiper navigation={false} pagination={false} modules={[Navigation, Pagination]}>
                 <SwiperSlide >
                     <div className="drawer-content">
                         <h2>{selectedAsset.name}</h2>
@@ -64,10 +64,16 @@ const Drawer = ({ selectedServiceInfo, selectedAsset }) => {
                 }
 
 
-            <div className="custom-pagination"></div>
             </Swiper>
         </div>
     )
 }
 
 export default Drawer
+
+
+
+
+
+
+
