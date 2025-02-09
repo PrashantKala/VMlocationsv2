@@ -1101,27 +1101,28 @@ table td a:hover {
 }
 
 
+.custom-pagination  {
 
-
-
-.custom-pagination {
-  position: absolute;
-  top: 5px !important; /* Move it down */
-  left: 40% !important;
-  /* transform: translateX(-50%); */
-  z-index: 10;
+  position: 'absolute';
+  /* top: '10px'; */
+  /* right: '10px'; */
+  z-index:  10;
+  display: 'flex';
+  gap: '5px';
 }
+
+
 
 .custom-pagination .swiper-pagination-bullet {
   width: 5px;
   height: 5px;
-  background-color: rgba(97, 89, 89, 0.6);
+  background-color: #000;
+  opacity: 0.5;
   border-radius: 50%;
-  transition: background-color 0.3s ease-in-out;
-  opacity: 1;
+  cursor: pointer;
 }
 
 .custom-pagination .swiper-pagination-bullet-active {
-  background-color: #007bff;
-  transform: scale(1.5);
+  opacity: 1;
+  background-color: #007aff;
 }
