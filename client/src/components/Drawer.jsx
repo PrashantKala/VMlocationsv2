@@ -4,7 +4,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 
 const Drawer = ({ selectedServiceInfo, selectedAsset }) => {
     return (
-        <div style={{overflowY:"auto"}}>
+        <div className='drawer-info' style={{overflowY:"auto"}}>
             <Swiper navigation={false} pagination={false} modules={[Navigation, Pagination]}>
                 <SwiperSlide >
                     <div className="drawer-content">
