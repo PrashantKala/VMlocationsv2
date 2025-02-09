@@ -44,13 +44,19 @@ const Homepage = () => {
   const closeTab = (tab) => {
     setClosing(true);
     setTimeout(() => {
-      setActiveTab(activeTab === tab ? null : tab);
+      if(activeTab===tab){
+        setActiveTab(null)
+        setSelectedAsset(null);
+      }else{
+        setActiveTab(tab)
+      }
       setClosing(false);
     }, 100);
   };
   const reset = (val) => {
+
     setResetCall(val);
-    setActiveTab(null)
+    setActiveTab(null);
     setSeed(Math.random());
   }
 
