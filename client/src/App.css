@@ -201,10 +201,14 @@
   border-bottom: 1px solid #ddd;
 }
 
+.custom_card_table tr {
+  cursor: pointer;
+}
 
 
 table tbody tr:hover {
   background-color: #f1f1f1;
+
 }
 
 table td a {
@@ -963,9 +967,9 @@ table td a:hover {
   .drawer {
     position: relative;
     width: 80vw;
-    /* top: auto; */
+    top: auto;
     bottom: 0;
-    /* left: 50%; */
+    left: 0%;
     /* transform: translate(-50%, 100%); */
     /* border: none; */
 
@@ -974,26 +978,7 @@ table td a:hover {
     top: 0;
   }
 
-  .drawer-open {
-    /* border: 2px solid black; */
-    height: 30px;
-    width: 40px;
-    border-radius: 50% 50% 0% 0%;
-    /* font-size: 20px; */
-    top: -30px;
-    left: 20%;
 
-    /* bottom: -100px; */
-    /* left: -30px; */
-  }
-  .drawer-close{
-    top: 0px;
-    left: 20%;
-    height: 30px;
-    width: 40px;
-    border-radius: 0% 0% 50% 50%;
-    font-size: 20px;
-  }
 
 }
 

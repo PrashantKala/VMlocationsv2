@@ -4,7 +4,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 
 const Drawer = ({ selectedServiceInfo, selectedAsset }) => {
     return (
-        <div style={{overflowY:"auto"}}>
+        <div style={{position:"relative",overflowY:"auto"}}>
             <Swiper navigation={false} pagination={{
                     clickable: true,
                     el: '.custom-pagination', 

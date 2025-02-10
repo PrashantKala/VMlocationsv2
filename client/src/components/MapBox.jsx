@@ -5,7 +5,7 @@ import assets from '../assets.json';
 import CustomCard from './CustomCard';
 import { createRoot } from 'react-dom/client';
 
-function MapBox({setSelectedServiceInfo, setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, resetCall, reset, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
+function MapBox({setIsDrawerOpen,isVisible,isDrawerOpen,selectedServiceInfo, setSelectedServiceInfo, setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, resetCall, reset, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
   const mapRef = useRef(null);
   const markersRef = useRef({});
 
@@ -111,6 +111,7 @@ function MapBox({setSelectedServiceInfo, setIsCustomCard, setWhoIsActive, whoIsA
       const root = createRoot(rootElement);
       root.render(
         <CustomCard
+        selectedServiceInfo={selectedServiceInfo}
         key={key}
           reset={reset}
           setIsVisible={setIsVisible}
@@ -120,6 +121,10 @@ function MapBox({setSelectedServiceInfo, setIsCustomCard, setWhoIsActive, whoIsA
           services={item.services}
           icon={item.icon}
           setSelectedServiceInfo={setSelectedServiceInfo}
+          isDrawerOpen={isDrawerOpen}
+          closeDrawer={closeDrawer}
+          isVisible={isVisible}
+          setIsDrawerOpen={setIsDrawerOpen}
         />
       );
       marker.reactRoot = root;

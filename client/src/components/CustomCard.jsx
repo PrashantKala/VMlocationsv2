@@ -1,19 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 // import './CustomCard.css';
 
-const CustomCard = ({setSelectedServiceInfo, reset, setIsVisible, openDrawer, name, status, services, icon }) => {
+const CustomCard = ({closeDrawer,isDrawerOpen, setIsDrawerOpen, selectedServiceInfo, setSelectedServiceInfo, reset, setIsVisible, openDrawer, name, status, services, icon }) => {
+  const [selectedRow, setSelectedRow] = useState(null);
   const relode = () => {
     reset(1)
   }
+  const toggleDrawer = () => {
+    setIsDrawerOpen((prev) => !prev);
+    setIsVisible((prev) => !prev);
+  };
+  const handleRowClick = (index, serviceName) => {
+    setSelectedRow(index);
+    setSelectedServiceInfo(serviceName);
+    setIsDrawerOpen(true);
+  };
   return (
     <div className="card">
       <button style={{position:"absolute", border:"none", cursor:"pointer",top:"8px", left:"8px",fontSize:"1rem"}} onClick={relode}>↺ </button>
       <div className="header">
-        <img src={icon} />
+        <img src={icon} style={{cursor:"pointer"}} onClick={()=>setSelectedServiceInfo(null)}/>
         <div className="header-content">
           <div></div>
-          <h2 >{name}</h2>
-          <button onClick={() => { openDrawer(); setIsVisible(true); }} >More Details</button>
+          <h2 style={{cursor:"pointer"}} onClick={()=>setSelectedServiceInfo(null)} >{name}</h2>
+          <button onClick={() => { toggleDrawer(); }} >More Details</button>
         </div>
       </div>
       <div className="status">
@@ -30,8 +40,12 @@ const CustomCard = ({setSelectedServiceInfo, reset, setIsVisible, openDrawer, na
         </thead>
         <tbody>
           {services.map((service, index) => (
-            <tr key={index}>
-              <td onClick={()=>setSelectedServiceInfo(service.name)} >{service.name}</td>
+            <tr               key={index}
+              style={{
+                backgroundColor: selectedRow === index ? '#E0E0E0' : 'transparent',
+              }}
+              onClick={() => handleRowClick(index, service.name)}>
+              <td style={{cursor:'pointer'}} onClick={()=>{setSelectedServiceInfo(service.name);setIsDrawerOpen(true)}} >{service.name}</td>
               <td className={`state-${service.state.toLowerCase()}`}>{service.state}</td>
               <td>
                 {service.url.startsWith('http') ? (
