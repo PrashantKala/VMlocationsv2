@@ -1,13 +1,34 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import assets from '../assets.json';
+// import assets from '../assets.json';
 import CustomCard from './CustomCard';
 import { createRoot } from 'react-dom/client';
+import axios from 'axios';
 
-function MapBox({setIsDrawerOpen,isVisible,isDrawerOpen,selectedServiceInfo, setSelectedServiceInfo, setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, resetCall, reset, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
+function MapBox({ assets, setIsDrawerOpen, isVisible, isDrawerOpen, selectedServiceInfo, setSelectedServiceInfo, setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, resetCall, reset, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
+  // const [assets, setAssets] = useState({});
+  // const [isAssetChanged, setAssetChange] = useState(null);
   const mapRef = useRef(null);
   const markersRef = useRef({});
+
+
+
+
+
+  // useEffect(() => {
+  //   // Fetch In-Cloud data
+  //   axios.get('http://localhost:1337/api/assets')
+  //     .then(response => {
+  //       console.log(typeof (response.data.data[0].assets))
+  //       setAssets(response.data.data[0].assets);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching assets data:', error);
+  //     });
+
+  // }, []);
+
 
   const initializeMap = () => {
     if (!mapRef.current) {
@@ -35,49 +56,50 @@ function MapBox({setIsDrawerOpen,isVisible,isDrawerOpen,selectedServiceInfo, set
       error: 'red',
     };
     const isError = item.status === 'error';
-                const marker = L.marker([item.latitude, item.longitude], {
-                  icon: L.divIcon({
-                    html: `
-                          <div class="marker-wrapper">
+    const marker = L.marker([item.latitude, item.longitude], {
+      icon: L.divIcon({
+        html: `
+                        <div class="marker-wrapper">
           ${isError ? '<div class="radiation-effect"></div>' : ''}                    
-                    <div style="
-                      position: relative;
-                      background: white; 
-                      border-radius: 50%; 
-                      width: 50px; 
-                      height: 50px; 
-                      display: flex; 
-                      align-items: center; 
-                      justify-content: center; 
-                      z-index: 10000;
-                    ">
-                      <img src="${item.icon}" style="z-index: 10000; width: 40px; height: 40px; border-radius: 50%;" />
                       <div style="
-                        position: absolute;
-                        top: -3px;
-                        left: -3px;
-                        width: 15px;
-                        height: 15px;
-                        border-radius: 50%;
-                        background-color: ${statusColors[item.status] || 'grey'};
-                        border: 2px solid white;
-                      "></div>
-                    </div><div/>
+                        position: relative;
+                        background: ${item.name.startsWith('Submarine') ? 'transparent' : 'white'};
+                        border-radius: 50%; 
+                        width: 50px; 
+                        height: 50px; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
+                        z-index: 10000;
+                        ">
+                        <img src="${item.icon}" style="z-index: 10000; width: ${item.name.startsWith('Submarine') ? '100px' : '40px'}; ; height: 40px; border-radius: 50%;" />
+                        <div style="
+                          position: absolute;
+                          top: -3px;
+                          left: -3px;
+                          width: 15px;
+                          height: 15px;
+                          border-radius: 50%;
+                          background-color: ${statusColors[item.status] || 'grey'};
+                          border: 2px solid white;
+                        "></div>
+                      </div>
+                    <div/>
                     <div style="
                       z-index: 100; 
                       position: fixed; 
                       bottom: -25px; 
                       left: 70%; 
                       border-radius: 0% 0% 50% 50%;  
-                      display: flex; 
+                      display: ${item.name.startsWith('Submarine') ? 'none' : 'flex'};
                       width: 5px; 
                       height: 20px; 
                       background-color: white;
                     "></div>`,
-                    className: "",
-                    iconSize: [30, 30],
-                  }),
-                }).addTo(map);
+        className: "",
+        iconSize: [30, 30],
+      }),
+    }).addTo(map);
 
     marker.bindPopup(popupContent);
     markersRef.current[item.name] = marker;
@@ -111,8 +133,8 @@ function MapBox({setIsDrawerOpen,isVisible,isDrawerOpen,selectedServiceInfo, set
       const root = createRoot(rootElement);
       root.render(
         <CustomCard
-        selectedServiceInfo={selectedServiceInfo}
-        key={key}
+          selectedServiceInfo={selectedServiceInfo}
+          key={key}
           reset={reset}
           setIsVisible={setIsVisible}
           openDrawer={openDrawer}
@@ -129,23 +151,23 @@ function MapBox({setIsDrawerOpen,isVisible,isDrawerOpen,selectedServiceInfo, set
       );
       marker.reactRoot = root;
     }
-  
+
     onSelectAsset(item);
-  
+
 
     if (whoIsActive !== key) {
       setWhoIsActive(key);
     }
-  
+
     closeTab(key);
     setIsCustomCard(true);
   };
-  
+
 
   const handlePopupClose = (marker) => {
     if (marker.reactRoot) {
       // setIsCustomCard(false)
-      setTimeout(()=> marker.reactRoot.unmount(), 500);
+      setTimeout(() => marker.reactRoot.unmount(), 500);
     }
     setIsCustomCard(false);
   };
@@ -166,7 +188,7 @@ function MapBox({setIsDrawerOpen,isVisible,isDrawerOpen,selectedServiceInfo, set
         mapRef.current = null;
       }
     };
-  }, [whoIsActive]);
+  }, [whoIsActive, assets]);
 
   useEffect(() => {
     if (selectedAsset && mapRef.current) {
@@ -177,7 +199,7 @@ function MapBox({setIsDrawerOpen,isVisible,isDrawerOpen,selectedServiceInfo, set
         marker.openPopup();
         setTimeout(() => {
           mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -50]);
-        }, 500);
+        }, 1000);
         setResetCall(0);
       } else if (marker) {
         closeDrawer();

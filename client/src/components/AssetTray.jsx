@@ -1,15 +1,37 @@
-import React, { useState } from "react";
-import asset from "../assets.json";
+import React, { useState,useEffect } from "react";
+// import asset from "../assets.json";
 import logo from "/images/logo.png"
 import mobile_logo from "/images/480_logo.png"
 import _ from 'lodash';
+import axios from "axios";
 const Navbar = ({isCustomCard,setWhoIsActive, activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelectAsset, openDrawer,closeDrawer }) => {
 
   const [hoveredAsset, setHoveredAsset] = useState(null);
+    const [assets, setAssets] = useState({});
+  useEffect(() => {
+    const fetchData = () => {
+      axios.get("/assets.json")
+        .then(response => {
+          setAssets(response.data.asset);
+        })
+        .catch(error => {
+          console.error('Error fetching assets data:', error);
+        });
+    };
+
+    // Fetch data immediately on component mount
+    fetchData();
+
+    // Set up interval to fetch data every 5 seconds
+    // const intervalId = setInterval(fetchData, 5000);
+
+    // Cleanup interval on component unmount
+    // return () => clearInterval(intervalId);
+  }, []);
 
 
 
-  const assets = asset;
+  // const assets = asset;
 
 
   const handleLogout = () => {
