@@ -4,30 +4,30 @@ import logo from "/images/logo.png"
 import mobile_logo from "/images/480_logo.png"
 import _ from 'lodash';
 import axios from "axios";
-const Navbar = ({isCustomCard,setWhoIsActive, activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelectAsset, openDrawer,closeDrawer }) => {
+const Navbar = ({assets, isCustomCard,setWhoIsActive, activeTab, closeTab, closing, tabs,setinfoSelectedAsset,onSelectAsset, openDrawer,closeDrawer }) => {
 
-  const [hoveredAsset, setHoveredAsset] = useState(null);
-    const [assets, setAssets] = useState({});
-  useEffect(() => {
-    const fetchData = () => {
-      axios.get("/assets.json")
-        .then(response => {
-          setAssets(response.data.asset);
-        })
-        .catch(error => {
-          console.error('Error fetching assets data:', error);
-        });
-    };
+  // const [hoveredAsset, setHoveredAsset] = useState(null);
+  //   const [assets, setAssets] = useState({});
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     axios.get("/assets.json")
+  //       .then(response => {
+  //         setAssets(response.data.asset);
+  //       })
+  //       .catch(error => {
+  //         console.error('Error fetching assets data:', error);
+  //       });
+  //   };
 
-    // Fetch data immediately on component mount
-    fetchData();
+  //   // Fetch data immediately on component mount
+  //   fetchData();
 
-    // Set up interval to fetch data every 5 seconds
-    // const intervalId = setInterval(fetchData, 5000);
+  //   // Set up interval to fetch data every 5 seconds
+  //   // const intervalId = setInterval(fetchData, 5000);
 
-    // Cleanup interval on component unmount
-    // return () => clearInterval(intervalId);
-  }, []);
+  //   // Cleanup interval on component unmount
+  //   // return () => clearInterval(intervalId);
+  // }, []);
 
 
 

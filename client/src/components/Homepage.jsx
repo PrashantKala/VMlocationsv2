@@ -115,7 +115,7 @@ const Homepage = () => {
   return (
     <>
       {/* <Navbar/> */}
-      <Navbar isCustomCard={isCustomCard} whoIsActive={whoIsActive} setWhoIsActive={setWhoIsActive} closing={closing} activeTab={activeTab} closeTab={closeTab} tabs={tabs} setinfoSelectedAsset={setinfoSelectedAsset} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
+      <Navbar assets={assets} isCustomCard={isCustomCard} whoIsActive={whoIsActive} setWhoIsActive={setWhoIsActive} closing={closing} activeTab={activeTab} closeTab={closeTab} tabs={tabs} setinfoSelectedAsset={setinfoSelectedAsset} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
 
 
       <MapBox assets={assets} setIsDrawerOpen={setIsDrawerOpen} isVisible={isVisible} isDrawerOpen={isDrawerOpen} selectedServiceInfo={selectedServiceInfo} setSelectedServiceInfo={setSelectedServiceInfo} setIsCustomCard={setIsCustomCard} isCustomCard={isCustomCard} setWhoIsActive={setWhoIsActive} whoIsActive={whoIsActive} resetCall={resetCall} setResetCall={setResetCall} reset={reset} key={seed} setIsVisible={setIsVisible} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTab} selectedAsset={selectedAsset} onSelectAsset={setSelectedAsset} openDrawer={openDrawer} closeDrawer={closeDrawer} />
