@@ -194,7 +194,7 @@ function MapBox({ assets, setIsDrawerOpen, isVisible, isDrawerOpen, selectedServ
     if (selectedAsset && mapRef.current) {
       const marker = markersRef.current[selectedAsset.name];
       if (marker && resetCall) {
-        closeDrawer();
+        // closeDrawer();
         const offset = window.innerWidth > 768 ? 0.03 : 0.001;
         mapRef.current.setView([selectedAsset.latitude+offset, selectedAsset.longitude], 13);
         marker.openPopup();
@@ -203,7 +203,7 @@ function MapBox({ assets, setIsDrawerOpen, isVisible, isDrawerOpen, selectedServ
         // }, 1000);
         setResetCall(0);
       } else if (marker) {
-        closeDrawer();
+        // closeDrawer();
         const offset = window.innerWidth > 768 ? 0.03 : 0.015;
         mapRef.current.flyTo([39.8283, -98.5795], 4, { animate: true, duration: 2 });
         mapRef.current.flyTo([selectedAsset.latitude+offset, selectedAsset.longitude], 13, { animate: true, duration: 1 });
