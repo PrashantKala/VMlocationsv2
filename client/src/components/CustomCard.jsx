@@ -7,19 +7,21 @@ const CustomCard = ({closeDrawer,isDrawerOpen, setIsDrawerOpen, selectedServiceI
     reset(1)
   }
   const toggleDrawer = () => {
-    setIsDrawerOpen((prev) => !prev);
+    setIsDrawerOpen(true);
     setIsVisible((prev) => !prev);
   };
   const handleRowClick = (index, serviceName) => {
-    setSelectedRow(index);
-    setSelectedServiceInfo(serviceName);
-    setIsDrawerOpen(true);
+    if(window.innerWidth>768){
+      setSelectedRow(index);
+      setSelectedServiceInfo(serviceName);
+      setIsDrawerOpen(true);
+    }
   };
   return (
     <div className="card">
       <button style={{position:"absolute", border:"none", cursor:"pointer",top:"8px", left:"8px",fontSize:"1rem"}} onClick={relode}>↺ </button>
       <div className="header">
-        <img style={(name.startsWith('Submarine'))?{width:'150px'}:{}} src={icon}  onClick={()=>{setSelectedRow(null);setSelectedServiceInfo(null)}}/>
+        <img style={(window.innerWidth<768 && name.startsWith('Submarine'))?{width:'80px'}:(name.startsWith('Submarine'))?{width:'120px'}:{}} src={icon}  onClick={()=>{setSelectedRow(null);setSelectedServiceInfo(null)}}/>
         <div className="header-content">
           <div></div>
           <h2 style={{cursor:"pointer"}} onClick={()=>{setSelectedRow(null);setSelectedServiceInfo(null)}} >{name}</h2>

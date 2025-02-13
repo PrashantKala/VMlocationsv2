@@ -12,7 +12,7 @@ const Drawer = ({ selectedServiceInfo, selectedAsset }) => {
                 <SwiperSlide >
                     <div className="drawer-content">
                         <h2>{selectedAsset.name}</h2>
-                        <img src={selectedAsset.icon} alt={selectedAsset.name} className="drawer-asset-icon" />
+                        <img style={(window.innerWidth<768 && selectedAsset.name.startsWith('Submarine'))?{width:'80px'}:(selectedAsset.name.startsWith('Submarine'))?{width:'120px'}:{}} src={selectedAsset.icon} alt={selectedAsset.name} className="drawer-asset-icon" />
                         <table>
                             <tbody>
                                 {Object.entries(selectedAsset.properties).map(([key, value]) => (

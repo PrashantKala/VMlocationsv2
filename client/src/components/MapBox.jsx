@@ -195,20 +195,22 @@ function MapBox({ assets, setIsDrawerOpen, isVisible, isDrawerOpen, selectedServ
       const marker = markersRef.current[selectedAsset.name];
       if (marker && resetCall) {
         closeDrawer();
-        mapRef.current.setView([selectedAsset.latitude, selectedAsset.longitude], 13);
+        const offset = window.innerWidth > 768 ? 0.03 : 0.001;
+        mapRef.current.setView([selectedAsset.latitude+offset, selectedAsset.longitude], 13);
         marker.openPopup();
-        setTimeout(() => {
-          mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -50]);
-        }, 1000);
+        // setTimeout(() => {
+        //   mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -50]);
+        // }, 1000);
         setResetCall(0);
       } else if (marker) {
         closeDrawer();
+        const offset = window.innerWidth > 768 ? 0.03 : 0.015;
         mapRef.current.flyTo([39.8283, -98.5795], 4, { animate: true, duration: 2 });
-        mapRef.current.flyTo([selectedAsset.latitude, selectedAsset.longitude], 13, { animate: true, duration: 1 });
+        mapRef.current.flyTo([selectedAsset.latitude+offset, selectedAsset.longitude], 13, { animate: true, duration: 1 });
         marker.openPopup();
-        setTimeout(() => {
-          mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -150]);
-        }, 1000);
+        // setTimeout(() => {
+        //   mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -150]);
+        // }, 1000);
       }
     }
   }, [selectedAsset]);

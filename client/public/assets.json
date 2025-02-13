@@ -1,5 +1,5 @@
 {
-  "change": 3,
+  "change": 1,
   "asset": {
     "In-Cloud": [
       {
@@ -98,7 +98,7 @@
           {
             "name": "Evensoft",
             "icon": "/images/Evensoft_logo.png",
-            "status": "ready",
+            "status": "readyy",
             "longitude": -111.4194,
             "latitude": 29.7749,
             "services": [
