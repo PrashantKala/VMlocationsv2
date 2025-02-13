@@ -19,7 +19,7 @@ const CustomCard = ({closeDrawer,isDrawerOpen, setIsDrawerOpen, selectedServiceI
     <div className="card">
       <button style={{position:"absolute", border:"none", cursor:"pointer",top:"8px", left:"8px",fontSize:"1rem"}} onClick={relode}>↺ </button>
       <div className="header">
-        <img src={icon} style={{cursor:"pointer"}} onClick={()=>{setSelectedRow(null);setSelectedServiceInfo(null)}}/>
+        <img style={(name.startsWith('Submarine'))?{width:'150px'}:{}} src={icon}  onClick={()=>{setSelectedRow(null);setSelectedServiceInfo(null)}}/>
         <div className="header-content">
           <div></div>
           <h2 style={{cursor:"pointer"}} onClick={()=>{setSelectedRow(null);setSelectedServiceInfo(null)}} >{name}</h2>

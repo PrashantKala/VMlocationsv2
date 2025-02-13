@@ -111,7 +111,7 @@ const Navbar = ({assets, isCustomCard,setWhoIsActive, activeTab, closeTab, closi
                             </table>
                           </div>
                         )} */}
-                        <img onClick={() => selectAsset(asset)} src={asset.icon} alt={asset.name} className="asset-icon" />
+                        <img style={(window.innerWidth<768 && asset.name.startsWith('Submarine'))?{width:'60px'}:{}} onClick={() => selectAsset(asset)} src={asset.icon} alt={asset.name} className="asset-icon" />
                         {/* <button className="plus-button" onClick={() => selectAsset(asset)}> <img src="/images/gps.png"/> </button> */}
                       </div>
                       <div className="asset-name">{asset.name}</div>
