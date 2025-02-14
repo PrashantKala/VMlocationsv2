@@ -139,8 +139,14 @@
   width: 20%;
   /* border: 2px solid black; */
 }
-.header-content button{
-  width: 20%;
+
+.moreDetailsBtns{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.moreDetailsBtns button{
+  /* width: 20%; */
   background: #f0f0f0;
   /* border: 1px solid #ddd; */
   border: none;
@@ -1111,4 +1117,30 @@ table td a:hover {
 .custom-pagination .swiper-pagination-bullet-active {
   opacity: 1;
   background-color: #007aff;
+}
+
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
 }

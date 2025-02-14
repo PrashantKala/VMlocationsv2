@@ -1,41 +1,17 @@
 import React, { useState, useRef } from 'react';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 const ImageModal = ({ images, onClose }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [scale, setScale] = useState(1); // State to manage zoom scale
-  const [position, setPosition] = useState({ x: 0, y: 0 }); // State to manage image position
-  const [isDragging, setIsDragging] = useState(false); // State to track if dragging is active
-  const dragStartPos = useRef({ x: 0, y: 0 }); // Ref to store initial drag position
+  const imageRef = useRef(null); // Ref to the image element
 
   // Handle scroll events for zooming
   const handleWheel = (event) => {
     event.preventDefault();
     const newScale = scale + event.deltaY * -0.01; // Adjust scale based on scroll direction
     setScale(Math.min(Math.max(0.5, newScale), 3)); // Limit scale between 0.5x and 3x
-  };
-
-  // Handle mouse down event to start dragging
-  const handleMouseDown = (event) => {
-    setIsDragging(true);
-    dragStartPos.current = {
-      x: event.clientX - position.x,
-      y: event.clientY - position.y,
-    };
-  };
-
-  // Handle mouse move event to drag the image
-  const handleMouseMove = (event) => {
-    if (isDragging) {
-      setPosition({
-        x: event.clientX - dragStartPos.current.x,
-        y: event.clientY - dragStartPos.current.y,
-      });
-    }
-  };
-
-  // Handle mouse up event to stop dragging
-  const handleMouseUp = () => {
-    setIsDragging(false);
   };
 
   return (
@@ -91,26 +67,19 @@ const ImageModal = ({ images, onClose }) => {
           style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}
           onWheel={handleWheel} // Attach scroll event handler
         >
-          <div
-            onMouseDown={handleMouseDown} // Start dragging on mouse down
-            onMouseMove={handleMouseMove} // Drag the image on mouse move
-            onMouseUp={handleMouseUp} // Stop dragging on mouse up
-            onMouseLeave={handleMouseUp} // Stop dragging if mouse leaves the area
-            style={{
-              cursor: isDragging ? 'grabbing' : 'grab', // Change cursor based on dragging state
-            }}
-          >
+          <Zoom>
             <img
+              ref={imageRef}
               src={images[activeIndex]}
               alt={`Image ${activeIndex + 1}`}
               style={{
-                maxWidth: '60%',
+                maxWidth: '100%',
                 borderRadius: '4px',
-                transform: `scale(${scale}) translate(${position.x}px, ${position.y}px)`, // Apply zoom scale and position
-                transition: isDragging ? 'none' : 'transform 0.1s ease', // Smooth transition only when not dragging
+                transform: `scale(${scale})`, // Apply zoom scale
+                transition: 'transform 0.1s ease', // Smooth zoom transition
               }}
             />
-          </div>
+          </Zoom>
         </div>
       </div>
     </div>

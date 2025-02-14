@@ -11,6 +11,10 @@
             "status": "poweringon",
             "longitude": -122.4194,
             "latitude": 37.7749,
+            "images":[
+              "/images/facility-pic1.png",
+              "/images/facility-pic1.png"
+            ],
             "services": [
               {
                 "name": "Mesh",
@@ -101,6 +105,11 @@
             "status": "readyy",
             "longitude": -111.4194,
             "latitude": 29.7749,
+            "images":[
+              "/images/facility-pic1.png",
+              "/images/facility-pic1.png",
+              "/images/facility-pic1.png"
+            ],
             "services": [
               {
                 "name": "Mesh",
@@ -196,6 +205,10 @@
             "status": "poweredoff",
             "longitude": -144.4194,
             "latitude": 47.7749,
+            "images":[
+              "/images/facility-pic1.png",
+              "/images/facility-pic1.png"
+            ],
             "services": [
               {
                 "name": "Mesh",
@@ -293,6 +306,10 @@
             "status": "error",
             "longitude": -100.4194,
             "latitude": 155.7749,
+            "images":[
+              "/images/facility-pic1.png",
+              "/images/facility-pic1.png"
+            ],
             "services": [
               {
                 "name": "Mesh",
@@ -388,6 +405,10 @@
             "status": "unmanaged",
             "longitude": -166.4194,
             "latitude": 47.7749,
+            "images":[
+              "/images/facility-pic1.png",
+              "/images/facility-pic1.png"
+            ],
             "services": [
               {
                 "name": "Mesh",
@@ -478,6 +499,10 @@
             "status": "poweredoff",
             "longitude": -106.4194,
             "latitude": 17.7749,
+            "images":[
+              "/images/facility-pic1.png",
+              "/images/facility-pic1.png"
+            ],
             "services": [
               {
                 "name": "Mesh",
@@ -573,6 +598,10 @@
             "status": "poweredoff",
             "longitude": -100.4194,
             "latitude": 66.7749,
+            "images":[
+              "/images/facility-pic1.png",
+              "/images/facility-pic1.png"
+            ],
             "services": [
               {
                 "name": "Mesh",
@@ -668,6 +697,10 @@
             "status": "poweredoff",
             "longitude": -110.4194,
             "latitude": 76.7749,
+            "images":[
+              "/images/ics_and_plc_network.png",
+              "/images/notional_it_and_ot_networks.png"
+            ],
             "services": [
               {
                 "name": "Mesh",

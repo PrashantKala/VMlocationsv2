@@ -4,13 +4,15 @@ import 'leaflet/dist/leaflet.css';
 // import assets from '../assets.json';
 import CustomCard from './CustomCard';
 import { createRoot } from 'react-dom/client';
-import axios from 'axios';
+import ImageModal from './Modal';
 
 function MapBox({ assets, setIsDrawerOpen, isVisible, isDrawerOpen, selectedServiceInfo, setSelectedServiceInfo, setIsCustomCard, setWhoIsActive, whoIsActive, setResetCall, resetCall, reset, setIsVisible, closeTab, onSelectAsset, selectedAsset, openDrawer, closeDrawer }) {
   // const [assets, setAssets] = useState({});
   // const [isAssetChanged, setAssetChange] = useState(null);
+  const [itemImages,setItemImages]=useState([])
   const mapRef = useRef(null);
   const markersRef = useRef({});
+    const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
 
 
@@ -128,11 +130,13 @@ function MapBox({ assets, setIsDrawerOpen, isVisible, isDrawerOpen, selectedServ
   };
 
   const handlePopupOpen = (item, key, marker) => {
+    setItemImages(item.images)
     const rootElement = document.getElementById(`popup-${item.name.replace(/\s+/g, '-')}`);
     if (rootElement) {
       const root = createRoot(rootElement);
       root.render(
         <CustomCard
+          setIsImageModalOpen={setIsImageModalOpen}
           selectedServiceInfo={selectedServiceInfo}
           key={key}
           reset={reset}
@@ -194,28 +198,35 @@ function MapBox({ assets, setIsDrawerOpen, isVisible, isDrawerOpen, selectedServ
     if (selectedAsset && mapRef.current) {
       const marker = markersRef.current[selectedAsset.name];
       if (marker && resetCall) {
-        // closeDrawer();
-        const offset = window.innerWidth > 768 ? 0.03 : 0.001;
-        mapRef.current.setView([selectedAsset.latitude+offset, selectedAsset.longitude], 13);
+        closeDrawer();
+        // const offset = window.innerWidth > 768 ? 0.03 : 0.001;
+        mapRef.current.setView([selectedAsset.latitude, selectedAsset.longitude], 13);
         marker.openPopup();
-        // setTimeout(() => {
-        //   mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -50]);
-        // }, 1000);
+        setTimeout(() => {
+          mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -50]);
+        }, 1000);
         setResetCall(0);
       } else if (marker) {
-        // closeDrawer();
-        const offset = window.innerWidth > 768 ? 0.03 : 0.015;
+        closeDrawer();
+        // const offset = window.innerWidth > 768 ? 0.03 : 0.015;
         mapRef.current.flyTo([39.8283, -98.5795], 4, { animate: true, duration: 2 });
-        mapRef.current.flyTo([selectedAsset.latitude+offset, selectedAsset.longitude], 13, { animate: true, duration: 1 });
+        mapRef.current.flyTo([selectedAsset.latitude, selectedAsset.longitude], 13, { animate: true, duration: 1 });
         marker.openPopup();
-        // setTimeout(() => {
-        //   mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -150]);
-        // }, 1000);
+        setTimeout(() => {
+          mapRef.current.panBy([0, window.innerWidth > 768 ? -210 : -150]);
+        }, 1000);
       }
     }
   }, [selectedAsset]);
 
-  return <div className="app-container"><div id="map" className="map-container" /></div>;
+  return <div className="app-container"><div id="map" className="map-container" />
+          {isImageModalOpen && (
+        <ImageModal
+          images={itemImages}
+          onClose={() => setIsImageModalOpen(false)} // Close the modal without affecting the card
+        />
+      )}
+  </div>;
 }
 
 export default MapBox;

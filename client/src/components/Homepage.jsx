@@ -105,11 +105,13 @@ const Homepage = () => {
 
   const openDrawer = (asset) => {
     // setSelectedAsset(asset);
+    setIsVisible(true)
     setIsDrawerOpen(true);
     // onSelectAsset(asset);
   };
   const closeDrawer = () => {
     setIsDrawerOpen(false);
+    setIsVisible(null)
     // setSelectedAsset(null);
   };
   return (
@@ -124,7 +126,7 @@ const Homepage = () => {
       {(window.innerWidth > 768) || (window.innerWidth < 768 && selectedAsset != null) ? <div style={window.innerWidth > 768 ? {} : {
         display: isVisible ? "flex" : "none",
       }} className={`drawer ${isDrawerOpen ? "open" : ""}`}>
-        {isDrawerOpen ? <button className="drawer-close" onClick={() => window.innerWidth > 768 ? closeDrawer() : toggleDisplay()}>{window.innerWidth > 768 ? ">" : "v"}</button> : <button className="drawer-open" onClick={openDrawer}>{window.innerWidth > 768 ? "<" : "^"}</button>}
+        {isVisible ? <button className="drawer-close" onClick={() => window.innerWidth > 768 ? closeDrawer() : toggleDisplay()}>{window.innerWidth > 768 ? ">" : "v"}</button> : <button className="drawer-open" onClick={openDrawer}>{window.innerWidth > 768 ? "<" : "^"}</button>}
         {selectedAsset != null ? (
 
 
